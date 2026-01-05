@@ -33,7 +33,7 @@ export function CTASection() {
               href="/apply"
               variant="secondary"
               size="lg"
-              className="bg-white text-brand-600 hover:bg-neutral-100"
+              className="bg-accent-500 text-brand-600 hover:bg-neutral-100"
             >
               Start Your Application
               <ArrowRight className="h-5 w-5" />
