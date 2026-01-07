@@ -1,26 +1,37 @@
 import { Button } from '@/components/ui/Button'
+import { Carousel } from '@/components/ui/Carousel'
 import { Phone, ArrowRight } from 'lucide-react'
 import { siteConfig } from '@/lib/config'
 import { formatPhoneForTel } from '@/lib/utils'
 
 export function Hero() {
+  const heroImages = [
+    '/img/bhills.jpg',
+    '/img/city1.jpg',
+    '/img/hollywood.jpg'
+  ]
+
   return (
     <section className="relative min-h-[85vh] flex items-center overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-brand-950 via-brand-900 to-brand-800">
-        {/* Decorative elements */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-brand-400 rounded-full blur-3xl" />
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent-400 rounded-full blur-3xl" />
+      {/* Background Carousel */}
+      <div className="absolute inset-0">
+        <Carousel images={heroImages} interval={6000} />
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-brand-950/80 via-brand-900/70 to-brand-800/80">
+          {/* Decorative elements */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-20 left-10 w-72 h-72 bg-brand-400 rounded-full blur-3xl" />
+            <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent-400 rounded-full blur-3xl" />
+          </div>
+          {/* Grid pattern */}
+          <div
+            className="absolute inset-0 opacity-5"
+            style={{
+              backgroundImage: `linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)`,
+              backgroundSize: '64px 64px',
+            }}
+          />
         </div>
-        {/* Grid pattern */}
-        <div
-          className="absolute inset-0 opacity-5"
-          style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)`,
-            backgroundSize: '64px 64px',
-          }}
-        />
       </div>
 
       <div className="container-wide relative z-10 py-20">
