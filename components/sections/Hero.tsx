@@ -12,7 +12,7 @@ export function Hero() {
   ]
 
   return (
-    <section className="relative min-h-[85vh] flex items-center overflow-hidden">
+    <section className="relative min-h-[85vh] flex items-center overflow-hidden herosectiontest">
       {/* Background Carousel */}
       <div className="absolute inset-0">
         <Carousel images={heroImages} interval={6000} />
