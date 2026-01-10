@@ -1,7 +1,8 @@
 import { Button } from '@/components/ui/Button'
-import { siteConfig } from '@/lib/config'
+import { siteConfig, sampleProperties } from '@/lib/config'
 import { Phone, ArrowRight, CheckCircle, Home, Search, FileText, Key } from 'lucide-react'
 import { formatPhoneForTel } from '@/lib/utils'
+import { FeaturedListings } from '@/components/sections/FeaturedListings'
 
 export const metadata = {
   title: 'Real Estate Agent San Bernardino | Buy & Sell Homes Inland Empire',
@@ -126,8 +127,15 @@ export default function RealEstatePage() {
         </div>
       </section>
 
+      {/* Featured Listings */}
+      <FeaturedListings
+        properties={sampleProperties}
+        title="Featured Homes"
+        subtitle="Browse our latest listings in the Inland Empire"
+      />
+
       {/* Why Us */}
-      <section id="realestate-why" className="section bg-neutral-50">
+      <section id="realestate-why" className="section bg-white">
         <div className="container-wide">
           <div id="realestate-why-header" className="text-center max-w-2xl mx-auto mb-12">
             <h2 id="realestate-why-headline" className="text-display-sm text-neutral-900 mb-4">
