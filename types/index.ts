@@ -2,6 +2,7 @@
 export interface SiteConfig {
   name: string
   nmls: string
+  dre?: string
   phone: string
   email: string
   address: {
@@ -10,6 +11,7 @@ export interface SiteConfig {
     state: string
     zip: string
   }
+  serviceAreas?: string[]
 }
 
 // Navigation types

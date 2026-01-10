@@ -1,8 +1,9 @@
 import type { SiteConfig, NavItem, LoanProgram } from '@/types'
 
 export const siteConfig: SiteConfig = {
-  name: 'Arrowhead Mortgage',
+  name: 'Arrowhead Realty & Mortgage',
   nmls: '1429245',
+  dre: '01847350',
   phone: '(888) 777-3556',
   email: 'info@arrowheadmtg.com',
   address: {
@@ -11,22 +12,22 @@ export const siteConfig: SiteConfig = {
     state: 'CA',
     zip: '92408',
   },
+  serviceAreas: [
+    'San Bernardino',
+    'Fontana',
+    'Rialto',
+    'Ontario',
+    'Rancho Cucamonga',
+    'Redlands',
+    'Colton',
+    'Highland',
+  ],
 }
 
 export const navigation: NavItem[] = [
   { label: 'Home', href: '/' },
-  { label: 'Purchase', href: '/purchase' },
-  { label: 'Refinance', href: '/refinance' },
-  {
-    label: 'Loan Programs',
-    href: '/loan-programs',
-    children: [
-      { label: 'Conventional', href: '/loan-programs/conventional' },
-      { label: 'FHA Loans', href: '/loan-programs/fha' },
-      { label: 'VA Loans', href: '/loan-programs/va' },
-      { label: 'Jumbo Loans', href: '/loan-programs/jumbo' },
-    ],
-  },
+  { label: 'Mortgage', href: '/mortgage' },
+  { label: 'Real Estate', href: '/real-estate' },
   { label: 'Calculators', href: '/calculators' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },

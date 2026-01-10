@@ -40,7 +40,7 @@ export function Header() {
                 Arrowhead
               </span>
               <span className="font-display font-bold text-xl text-brand-600 ml-1">
-                Mortgage
+                Realty & Mortgage
               </span>
             </div>
           </Link>
