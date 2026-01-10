@@ -12,18 +12,17 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Company info */}
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
-                <span className="text-brand-600 font-bold text-xl">A</span>
-              </div>
-              <span className="font-display font-bold text-xl">
-                Arrowhead Mortgage
-              </span>
+            <div className="mb-6">
+              <img
+                src="/img/arrowhead-logos-v2/concept-03-lineal/logo-horizontal-fondo-oscuro.svg"
+                alt="Arrowhead Realty & Mortgage"
+                className="h-14 w-auto"
+              />
             </div>
             <p className="text-neutral-300 mb-6 max-w-md">
-              Your trusted partner for home financing in San Bernardino and the
-              Inland Empire. We&apos;re committed to making homeownership
-              accessible and affordable.
+              Your trusted partner for real estate and home financing in San
+              Bernardino and the Inland Empire. Buy your home and get your loan
+              with one team.
             </p>
             <div className="space-y-3">
               <a
@@ -78,42 +77,42 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Loan programs */}
+          {/* Services */}
           <div>
             <h3 className="font-display font-semibold text-lg mb-4">
-              Loan Programs
+              Services
             </h3>
             <ul className="space-y-3">
               <li>
                 <Link
-                  href="/loan-programs/conventional"
+                  href="/mortgage"
                   className="text-neutral-300 hover:text-white transition-colors"
                 >
-                  Conventional Loans
+                  Home Loans
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/loan-programs/fha"
+                  href="/real-estate"
                   className="text-neutral-300 hover:text-white transition-colors"
                 >
-                  FHA Loans
+                  Real Estate
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/loan-programs/va"
+                  href="/calculators"
                   className="text-neutral-300 hover:text-white transition-colors"
                 >
-                  VA Loans
+                  Calculators
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/loan-programs/jumbo"
+                  href="/apply"
                   className="text-neutral-300 hover:text-white transition-colors"
                 >
-                  Jumbo Loans
+                  Apply Now
                 </Link>
               </li>
             </ul>
@@ -126,8 +125,9 @@ export function Footer() {
         <div className="container-wide py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-neutral-400">
             <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
-              <span>© {currentYear} Arrowhead Mortgage</span>
+              <span>© {currentYear} Arrowhead Realty & Mortgage</span>
               <span>NMLS #{siteConfig.nmls}</span>
+              {siteConfig.dre && <span>DRE #{siteConfig.dre}</span>}
               <a
                 href="https://www.nmlsconsumeraccess.org"
                 target="_blank"

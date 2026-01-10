@@ -3,7 +3,9 @@
     "allow": [
       "WebFetch(domain:www.arrowheadmtg.com)",
       "Read(/C:\\Users\\abela\\OneDrive\\Documents\\development\\broker\\app\\apply/**)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(npm run build:*)",
+      "Bash(npx tsc:*)"
     ],
     "deny": [],
     "ask": []

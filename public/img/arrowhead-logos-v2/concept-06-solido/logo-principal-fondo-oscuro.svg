@@ -1,0 +1,10 @@
+<svg width="180" height="170" viewBox="0 0 180 170" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#f59e0b"/>
+            <stop offset="100%" style="stop-color:#d97706"/>
+        </linearGradient>
+    </defs>
+    <path d="M90 15 Q92 15 93.5 17.5 L143 120 Q145 125 141 127 L92 107 Q90 106 88 107 L39 127 Q35 125 37 120 L86.5 17.5 Q88 15 90 15 Z" fill="url(#grad)"/>
+    <text x="90" y="155" text-anchor="middle" font-family="Inter, sans-serif" font-weight="600" font-size="14" fill="#FFFFFF" letter-spacing="3">ARROWHEAD</text>
+</svg>

@@ -2,6 +2,7 @@
 export interface SiteConfig {
   name: string
   nmls: string
+  dre?: string
   phone: string
   email: string
   address: {
@@ -10,6 +11,7 @@ export interface SiteConfig {
     state: string
     zip: string
   }
+  serviceAreas?: string[]
 }
 
 // Navigation types
@@ -69,4 +71,33 @@ export interface MortgageCalculatorResult {
   pmi: number
   totalPayment: number
   totalInterest: number
+}
+
+// Property listing types
+export interface Property {
+  id: string
+  slug: string
+  status: 'for-sale' | 'pending' | 'sold'
+  price: number
+  address: {
+    street: string
+    city: string
+    state: string
+    zip: string
+  }
+  bedrooms: number
+  bathrooms: number
+  sqft: number
+  lotSize?: number
+  yearBuilt?: number
+  propertyType: 'single-family' | 'condo' | 'townhouse' | 'multi-family' | 'land'
+  description: string
+  features: string[]
+  images: string[]
+  virtualTourUrl?: string
+  mlsNumber?: string
+  daysOnMarket?: number
+  hoaFees?: number
+  createdAt: string
+  updatedAt: string
 }

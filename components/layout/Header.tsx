@@ -31,18 +31,12 @@ export function Header() {
       <nav className="container-wide py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-brand-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-xl">A</span>
-            </div>
-            <div className="hidden sm:block">
-              <span className="font-display font-bold text-xl text-brand-900">
-                Arrowhead
-              </span>
-              <span className="font-display font-bold text-xl text-brand-600 ml-1">
-                Mortgage
-              </span>
-            </div>
+          <Link href="/" className="flex items-center">
+            <img
+              src="/img/arrowhead-logos-v2/concept-03-lineal/logo-horizontal-fondo-claro.svg"
+              alt="Arrowhead Realty & Mortgage"
+              className="h-12 w-auto"
+            />
           </Link>
 
           {/* Desktop navigation */}
