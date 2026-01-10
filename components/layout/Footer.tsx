@@ -12,13 +12,12 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Company info */}
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
-                <span className="text-brand-600 font-bold text-xl">A</span>
-              </div>
-              <span className="font-display font-bold text-xl">
-                Arrowhead Realty & Mortgage
-              </span>
+            <div className="mb-6">
+              <img
+                src="/img/arrowhead-logos-v2/concept-03-lineal/logo-horizontal-fondo-oscuro.svg"
+                alt="Arrowhead Realty & Mortgage"
+                className="h-14 w-auto"
+              />
             </div>
             <p className="text-neutral-300 mb-6 max-w-md">
               Your trusted partner for real estate and home financing in San

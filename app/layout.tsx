@@ -22,14 +22,15 @@ const plusJakarta = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL('https://arrowheadmtg.com'),
   title: {
-    default: 'Arrowhead Mortgage | Home Loans in San Bernardino, CA',
-    template: '%s | Arrowhead Mortgage',
+    default: 'Arrowhead Realty & Mortgage | Home Loans & Real Estate in San Bernardino, CA',
+    template: '%s | Arrowhead Realty & Mortgage',
   },
   description:
-    'Your trusted mortgage lender in San Bernardino and the Inland Empire. Home purchase, refinancing, and loan programs tailored to your needs. NMLS #1429245',
+    'Your trusted partner for real estate and home financing in San Bernardino and the Inland Empire. Buy your home and get your loan with one team. NMLS #1429245 | DRE #01847350',
   keywords: [
     'mortgage',
     'home loans',
+    'real estate',
     'San Bernardino',
     'Inland Empire',
     'California',
@@ -37,30 +38,36 @@ export const metadata: Metadata = {
     'home purchase',
     'FHA loans',
     'VA loans',
+    'mortgage broker',
+    'real estate agent',
   ],
-  authors: [{ name: 'Arrowhead Mortgage' }],
+  authors: [{ name: 'Arrowhead Realty & Mortgage' }],
+  icons: {
+    icon: '/img/arrowhead-logos-v2/concept-03-lineal/icono-fondo-oscuro.svg',
+    apple: '/img/arrowhead-logos-v2/concept-03-lineal/icono-fondo-oscuro.svg',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: 'https://arrowheadmtg.com',
-    siteName: 'Arrowhead Mortgage',
-    title: 'Arrowhead Mortgage | Home Loans in San Bernardino, CA',
+    siteName: 'Arrowhead Realty & Mortgage',
+    title: 'Arrowhead Realty & Mortgage | Home Loans & Real Estate in San Bernardino, CA',
     description:
-      'Your trusted mortgage lender in San Bernardino and the Inland Empire.',
+      'Your trusted partner for real estate and home financing in San Bernardino and the Inland Empire.',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Arrowhead Mortgage',
+        alt: 'Arrowhead Realty & Mortgage',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Arrowhead Mortgage | Home Loans in San Bernardino, CA',
+    title: 'Arrowhead Realty & Mortgage | Home Loans & Real Estate in San Bernardino, CA',
     description:
-      'Your trusted mortgage lender in San Bernardino and the Inland Empire.',
+      'Your trusted partner for real estate and home financing in San Bernardino and the Inland Empire.',
   },
   robots: {
     index: true,

@@ -194,7 +194,7 @@ export default function MortgagePage() {
             local mortgage expert.
           </p>
           <div id="mortgage-cta-buttons" className="flex flex-wrap justify-center gap-4">
-            <Button id="mortgage-final-apply" href="/apply" size="lg" className="bg-white text-brand-600 hover:bg-neutral-100">
+            <Button id="mortgage-final-apply" href="/apply" size="lg" variant='secondary' className="text-brand-600 hover:bg-neutral-100">
               Apply Now
             </Button>
             <Button

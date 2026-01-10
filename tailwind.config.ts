@@ -9,32 +9,33 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Brand colors - customize these
+        // Primary - Navy Blue
         brand: {
-          50: '#eff8ff',
-          100: '#dbeefe',
-          200: '#bfe3fe',
-          300: '#93d2fd',
-          400: '#60b8fa',
-          500: '#3b97f6',
-          600: '#1e6fdb', // Primary
-          700: '#1d5bb8',
-          800: '#1e4b95',
-          900: '#1e4176',
-          950: '#172948',
+          50: '#f0f4f8',
+          100: '#d9e2ec',
+          200: '#bcccdc',
+          300: '#9fb3c8',
+          400: '#7b8fa3',
+          500: '#2d4a6f', // primary-light
+          600: '#1e3a5f', // primary (main)
+          700: '#163050',
+          800: '#0f1f33', // primary-dark
+          900: '#0a1628',
+          950: '#050c14',
         },
+        // Accent - Bright Gold
         accent: {
-          50: '#fff7ed',
-          100: '#ffedd5',
-          200: '#fed7aa',
-          300: '#fdba74',
-          400: '#fb923c',
-          500: '#f97316', // Secondary/CTA
-          600: '#ea580c',
-          700: '#c2410c',
-          800: '#9a3412',
-          900: '#7c2d12',
-          950: '#431407',
+          50: '#fffbeb',
+          100: '#fef3c7',
+          200: '#fde68a',
+          300: '#fcd34d',
+          400: '#fbbf24',
+          500: '#f59e0b', // accent (main)
+          600: '#d97706', // accent-hover
+          700: '#b45309',
+          800: '#92400e',
+          900: '#78350f',
+          950: '#451a03',
         },
         neutral: {
           50: '#fafafa',

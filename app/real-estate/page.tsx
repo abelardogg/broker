@@ -203,7 +203,7 @@ export default function RealEstatePage() {
             valuation if you&apos;re thinking of selling.
           </p>
           <div id="realestate-cta-buttons" className="flex flex-wrap justify-center gap-4">
-            <Button id="realestate-final-contact" href="/contact" size="lg" className="bg-white text-brand-600 hover:bg-neutral-100">
+            <Button id="realestate-final-contact" href="/contact" size="lg" variant='secondary' className="text-brand-600 hover:bg-neutral-100">
               Contact Us
             </Button>
             <Button

@@ -1,0 +1,9 @@
+<svg width="180" height="170" viewBox="0 0 180 170" xmlns="http://www.w3.org/2000/svg">
+    <path d="M90 20 L145 130 L90 105 L35 130 Z" 
+          fill="none" 
+          stroke="#FFFFFF" 
+          stroke-width="2.5"
+          stroke-linejoin="round"/>
+    <line x1="90" y1="40" x2="90" y2="80" stroke="#f59e0b" stroke-width="1.5"/>
+    <text x="90" y="158" text-anchor="middle" font-family="Inter, sans-serif" font-weight="500" font-size="14" fill="#FFFFFF" letter-spacing="4">ARROWHEAD</text>
+</svg>
