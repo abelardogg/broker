@@ -36,7 +36,7 @@ export function Hero() {
             <span id="hero-headline-accent" className="text-gradient bg-gradient-to-r from-brand-300 to-accent-400">
               Mortgage Broker
             </span>{' '}
-            & Real Estate
+            & Real Estate.
           </h1>
 
           {/* Subheadline - SEO optimized */}
