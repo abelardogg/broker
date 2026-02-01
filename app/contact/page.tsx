@@ -13,13 +13,38 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsLoading(true)
-    
-    // Aquí conectarías con Formspree, Basin, o tu API
-    // Por ahora simulamos un envío
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    
-    setIsLoading(false)
-    setIsSubmitted(true)
+
+    try {
+      const formData = new FormData(e.currentTarget)
+      const data = {
+        firstName: formData.get('firstName'),
+        lastName: formData.get('lastName'),
+        email: formData.get('email'),
+        phone: formData.get('phone'),
+        subject: formData.get('subject'),
+        message: formData.get('message'),
+      }
+
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+
+      if (!response.ok) {
+        throw new Error('Error al enviar el mensaje')
+      }
+
+      setIsSubmitted(true)
+      e.currentTarget.reset()
+    } catch (error) {
+      console.error('Error:', error)
+      alert('Hubo un error al enviar el mensaje. Por favor intenta nuevamente.')
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
