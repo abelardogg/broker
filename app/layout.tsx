@@ -20,28 +20,29 @@ const plusJakarta = Plus_Jakarta_Sans({
 
 // Site-wide metadata
 export const metadata: Metadata = {
-  metadataBase: new URL('https://arrowheadmtg.com'),
+  metadataBase: new URL('https://arrowheadrealty.com'),
   title: {
-    default: 'Arrowhead Realty & Mortgage | Home Loans & Real Estate in San Bernardino, CA',
-    template: '%s | Arrowhead Realty & Mortgage',
+    default: 'Arrowhead Realty Group | Real Estate Agent San Bernardino, CA',
+    template: '%s | Arrowhead Realty Group',
   },
   description:
-    'Your trusted partner for real estate and home financing in San Bernardino and the Inland Empire. Buy your home and get your loan with one team. NMLS #1429245 | DRE #01847350',
+    'Find your dream home in San Bernardino and the Inland Empire with Arrowhead Realty Group. Expert real estate services for buyers and sellers. DRE #01847350',
   keywords: [
-    'mortgage',
-    'home loans',
     'real estate',
+    'homes for sale',
     'San Bernardino',
     'Inland Empire',
     'California',
-    'refinance',
-    'home purchase',
-    'FHA loans',
-    'VA loans',
-    'mortgage broker',
     'real estate agent',
+    'buy home',
+    'sell home',
+    'Fontana',
+    'Rialto',
+    'Ontario',
+    'Rancho Cucamonga',
+    'Redlands',
   ],
-  authors: [{ name: 'Arrowhead Realty & Mortgage' }],
+  authors: [{ name: 'Arrowhead Realty Group' }],
   icons: {
     icon: '/img/arrowhead-logos-v2/concept-03-lineal/icono-fondo-oscuro.svg',
     apple: '/img/arrowhead-logos-v2/concept-03-lineal/icono-fondo-oscuro.svg',
@@ -49,25 +50,25 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://arrowheadmtg.com',
-    siteName: 'Arrowhead Realty & Mortgage',
-    title: 'Arrowhead Realty & Mortgage | Home Loans & Real Estate in San Bernardino, CA',
+    url: 'https://arrowheadrealty.com',
+    siteName: 'Arrowhead Realty Group',
+    title: 'Arrowhead Realty Group | Real Estate Agent San Bernardino, CA',
     description:
-      'Your trusted partner for real estate and home financing in San Bernardino and the Inland Empire.',
+      'Find your dream home in San Bernardino and the Inland Empire with expert real estate services.',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Arrowhead Realty & Mortgage',
+        alt: 'Arrowhead Realty Group',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Arrowhead Realty & Mortgage | Home Loans & Real Estate in San Bernardino, CA',
+    title: 'Arrowhead Realty Group | Real Estate Agent San Bernardino, CA',
     description:
-      'Your trusted partner for real estate and home financing in San Bernardino and the Inland Empire.',
+      'Find your dream home in San Bernardino and the Inland Empire with expert real estate services.',
   },
   robots: {
     index: true,

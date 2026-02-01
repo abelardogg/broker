@@ -1,4 +1,5 @@
-import Link from 'next/link'
+'use client'
+
 import { Bed, Bath, Square, MapPin } from 'lucide-react'
 import type { Property } from '@/types'
 import { cn } from '@/lib/utils'
@@ -6,6 +7,7 @@ import { cn } from '@/lib/utils'
 interface PropertyCardProps {
   property: Property
   className?: string
+  onClick?: () => void
 }
 
 function formatPrice(price: number): string {
@@ -26,18 +28,19 @@ const statusStyles = {
   sold: 'bg-neutral-500 text-white',
 }
 
-const statusLabels = {
-  'for-sale': 'For Sale',
-  pending: 'Pending',
-  sold: 'Sold',
-}
+export function PropertyCard({ property, className, onClick }: PropertyCardProps) {
+  // Use listingType if available, otherwise fall back to status
+  const displayLabel = property.listingType || {
+    'for-sale': 'For Sale',
+    pending: 'Pending',
+    sold: 'Sold',
+  }[property.status]
 
-export function PropertyCard({ property, className }: PropertyCardProps) {
   return (
-    <Link
-      href={`/properties/${property.slug}`}
+    <button
+      onClick={onClick}
       className={cn(
-        'group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1',
+        'group w-full text-left bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer',
         className
       )}
     >
@@ -52,11 +55,11 @@ export function PropertyCard({ property, className }: PropertyCardProps) {
         <div className="absolute top-3 left-3">
           <span
             className={cn(
-              'px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide',
+              'px-3 py-1 rounded-full text-xs font-semibold tracking-wide',
               statusStyles[property.status]
             )}
           >
-            {statusLabels[property.status]}
+            {displayLabel}
           </span>
         </div>
         {/* Days on market */}
@@ -94,25 +97,31 @@ export function PropertyCard({ property, className }: PropertyCardProps) {
 
         {/* Stats */}
         <div className="flex items-center gap-4 text-neutral-600">
-          <div className="flex items-center gap-1.5">
-            <Bed className="h-4 w-4 text-neutral-400" />
-            <span className="text-sm font-medium">{property.bedrooms}</span>
-            <span className="text-xs text-neutral-400">beds</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <Bath className="h-4 w-4 text-neutral-400" />
-            <span className="text-sm font-medium">{property.bathrooms}</span>
-            <span className="text-xs text-neutral-400">baths</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <Square className="h-4 w-4 text-neutral-400" />
-            <span className="text-sm font-medium">
-              {formatNumber(property.sqft)}
-            </span>
-            <span className="text-xs text-neutral-400">sqft</span>
-          </div>
+          {property.bedrooms > 0 && (
+            <div className="flex items-center gap-1.5">
+              <Bed className="h-4 w-4 text-neutral-400" />
+              <span className="text-sm font-medium">{property.bedrooms}</span>
+              <span className="text-xs text-neutral-400">beds</span>
+            </div>
+          )}
+          {property.bathrooms > 0 && (
+            <div className="flex items-center gap-1.5">
+              <Bath className="h-4 w-4 text-neutral-400" />
+              <span className="text-sm font-medium">{property.bathrooms}</span>
+              <span className="text-xs text-neutral-400">baths</span>
+            </div>
+          )}
+          {property.sqft > 0 && (
+            <div className="flex items-center gap-1.5">
+              <Square className="h-4 w-4 text-neutral-400" />
+              <span className="text-sm font-medium">
+                {formatNumber(property.sqft)}
+              </span>
+              <span className="text-xs text-neutral-400">sqft</span>
+            </div>
+          )}
         </div>
       </div>
-    </Link>
+    </button>
   )
 }

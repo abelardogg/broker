@@ -1,0 +1,799 @@
+<div class="apex-idxmdvmain separate" id="dev" data-bind="foreach:globalVariable.koGpropertyDetails" style="max-width: 1024px;">
+	
+	<div class="apex-idxtop" style="overflow-y: scroll; height: 100%;">
+		  <div class="apex-idxmdvboth">
+			<span class="apex-idxmdvtext" data-bind="visible:$parent.globalVariable.pageType() == 'homedetails'" style="display: none;">
+				<span style="cursor: pointer; display: none;" onclick="window.location.href='/idx/featuredproperties/'" data-bind="visible:$parent.globalVariable.pageType() == 'homedetails'"><i class="fa fa-chevron-left"></i> Featured Properties</span>
+			</span>
+			<span class="apex-idx-AopenHouse" data-bind="visible:$data.openDate" style="display: none;">
+					<span class="apex-idxmdvtext-openHouse" data-bind="visible:$data.openDate,text:'Open House: '" style="display: none;">Open House: </span>
+					<!-- <span class="apex-idxmdvtext-openHouse1" style="color:#DA262F!important" data-bind="visible:$data.openDate,text:$data.openDate+', '+$data.openStart+' - '+$data.openEnd"><i class="fa fa-chevron-left"></i></span> -->
+					<span class="apex-idxmdvtext-openHouse1" style="color: rgb(218, 38, 47) !important; display: none;" data-bind="visible:$data.openDate,html:$data.openDate+' '">undefined </span>
+			</span>
+			<span class="apex-idxmdvbig" data-bind="visible:$parent.globalVariable.pageType() != 'homedetails'">
+
+				<a data-bind="visible:$parent.globalVariable.pageType() != 'homedetails' &amp;&amp; globalAgentInfo.plan_pkg !== 'lite',attr: { href: $data.openDate ? '/idx/homedetails/'+$data.openHid+'$openHid/'+ $data.address.trim().replace(/,|#| /g,'-')+'/'+$data.proId+'$detailViewId' : '/idx/homedetails/'+ $data.address.trim().replace(/,|#| /g,'-')+'/'+$data.proId+'$detailViewId'}" target="_blank" style="vertical-align:middle;margin-right: 9px;" href="/idx/homedetails/5571-Clover-Hill-Yorba-Linda--CA-92886-/F6A09095-A616-4A1C-8909-65284CA10303$detailViewId">EXPAND</a>		
+				
+				<a data-bind="visible:$parent.globalVariable.pageType() != 'homedetails',click:  $parent.closeDetailView" href="javascript:void(0)"><span class="apex-idx-axe">X</span></a>
+			</span>
+			<div class="apex-idx-login2" data-bind="visible: globalAgentInfo.plan_pkg !== 'lite'">
+				<ul data-bind="css: {'ulMenu': $parent.globalVariable.pageType() != 'homedetails'}" class="apex-idx-nav apex-idx-navbar-nav apex-idx-navbar-right ulMenu">		
+					<li data-bind="visible:!$parent.globalVariable.koGlobalIsLoggedIn()"><a tabindex="0" data-bind="click:$parent.showLogin" id="apex-idx-login"><i class="fa fa-user" style="     color: grey!important;   font-size: 17px !important;margin-top: -3px;margin-right: 6px;color: grey;"></i>Login</a></li>
+					<li class="apex-idx-dropdown" data-bind="visible:$parent.globalVariable.koGlobalIsLoggedIn()" style="display: none;">
+					<a href="javascript:void(0)" class="apex-idx-dropdown-toggle" id="apex-idx-account" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="font-size:18px;"> <span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span data-bind="text:$parent.globalVariable.koGlobalVisterInfo()[0]['name']"></span><span class="caret"></span></a>
+					<ul class="apex-idx-dropdown-menu apex-idx-logout" id="apex-idx-dropdown-menu1" style="display:none;">
+						<li><a tabindex="0" data-bind="click:$parent.yourAccount">Your Account</a></li>
+						<li><a tabindex="0" data-bind="attr: { href: '/idx/savedhomes'}" href="/idx/savedhomes">Saved Homes</a></li>
+						<li><a tabindex="0" data-bind="click:$parent.yourAccount">Saved Searches</a></li>
+						<li><a tabindex="0" data-bind="click:$parent.logOut">Log-Out</a></li>
+					</ul>
+					</li>
+				</ul>	
+			</div>
+			<span class="apex-idxmdvbig" data-bind="visible: globalAgentInfo.plan_pkg !== 'lite'">
+				<a data-bind="css: {'qrcode_btn': $parent.globalVariable.pageType() != 'homedetails'}" id="generateQRBtn" onclick="downloadQrCode()" style="color: #ffffff !important;border: 1px solid #007bff;border-radius: 5px;background-color: #007bff !important;padding: 5px 13px;font-size: 14px !important;" class="qrcode_btn">
+					<i class="fa fa-qrcode"></i> QR Code
+				</a>
+			</span>
+			</div>
+		
+		<div class="apex-idxmdvcode">
+			<div class="apex-idxmdvaddress" data-bind="css: {'lite-width': globalAgentInfo.plan_pkg === 'lite'}">
+				
+				<div class="apex-idxmdvcity">
+					<span data-bind="attr:{id:'proAdd'},text:$data.addressA" id="proAdd">5571 Clover Hill </span>
+				</div> 
+				
+				<div class="apex-idxmdvprice">
+					
+					<!-- ko if: $data.SoldPrice &&  $data.ListingStatus == 'Sold'  --><!-- /ko -->
+					<!-- ko if: $data.SoldPrice &&  $data.ListingStatus == 'Sold' --><!-- /ko -->
+					<!-- ko ifnot: $data.SoldPrice -->
+					<span class="apex-idxcurr-price-main"><span class="apex-idxcurr-price">Price:  </span><span data-bind="text:' $'+$data.listprice"> $3,499,000</span></span>
+					<!-- /ko -->
+				</div> 
+				
+				
+				<div class="apex-idxmdvbb">
+					<span data-bind="attr:{id:'proAdd'},text:$data.addressB" id="proAdd">Yorba Linda, CA 92886- </span>
+				</div>
+				
+				<ul class="apex-idxmdvlist feat-list">
+					<!-- ko if: $data.nBeds -->
+					<li data-bind="visible:$data.nBeds"><b data-bind="text: $data.nBeds">6</b> <span class="apexidx-dview-beds">Beds</span> <i class="fa fa-circle feat-sep"></i></li>				
+					<!-- /ko -->
+					<!-- ko if: $data.nBaths -->
+					<li data-bind="visible:$data.nBaths"><b data-bind="text: $data.nBaths">7</b> <span class="apexidx-dview-baths">Baths</span> <i class="fa fa-circle feat-sep"></i></li>
+					<!-- /ko -->
+					<!-- ko if: $data.ImprovedSquareFeet -->
+					<li data-bind="visible:$data.ImprovedSquareFeet"> <b data-bind="text: $data.ImprovedSquareFeet">6,863</b> <span class="apexidx-dview-sqft">SqFt</span> <i class="fa fa-circle feat-sep"></i></li>
+					<!-- /ko -->
+					<!-- ko if: $data.LotSquareFeet -->
+					<li data-bind="visible:$data.LotSquareFeet"><b data-bind="text: $data.LotSquareFeet">22,000</b> <span class="apexidx-dview-sqft-lot">SqFt Lot</span> <i class="fa fa-circle feat-sep" style="display: none;"></i></li>
+					<!-- /ko -->
+				</ul>
+				
+				<div class="apex-idxmdvlargview" data-bind="visible: globalAgentInfo.plan_pkg !== 'lite'">
+					<a id="fullscreen" href="javascript:void(0)">View Larger Photos</a>
+				</div>
+				
+				<div class="apex-idxmdvimage"> 
+					<div class="page wrapper main-wrapper"> 
+						<div class="apex-idxmdvcol apex-idxmdvspan_4 apex-idxmdvfwImage">
+							
+								<div id="wrapper-outer1">
+								<div id="wrapper1">
+									<div id="wrapper-inner1">
+										
+											<style>.fotorama1769916484279 .fotorama__nav--thumbs .fotorama__nav__frame{
+padding:2px;
+height:64px}
+.fotorama1769916484279 .fotorama__thumb-border{
+height:60px;
+border-width:2px;
+margin-top:2px}</style><div class="fotorama--hidden"></div><div id="apexidxgallery-1" class="fotorama fotorama1769916484279" data-bind="css: {'image-width': globalAgentInfo.plan_pkg === 'lite'}" data-nav="thumbs" data-width="100%" data-ratio="1.5" data-allowfullscreen="true" data-fit="cover" data-auto="false"><div class="fotorama__wrap fotorama__wrap--css3 fotorama__wrap--slide fotorama__wrap--toggle-arrows fotorama__wrap--no-controls" style="width: 100%; min-width: 0px; max-width: 100%;"><div class="fotorama__stage fotorama__pointer" style="width: 656px; height: 437px;"><div class="fotorama__fullscreen-icon" tabindex="0" role="button"></div><div class="fotorama__stage__shaft" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px); width: 656px; margin-left: 0px;"><div class="fotorama__stage__frame fotorama__active fotorama__loaded fotorama__loaded--img" style="left: 0px;"><img src="https://api.cotality.com/trestle/Media/Property/PHOTO-Jpeg/1147278084/1/NTIyNC80MDUzLzIw/MjAvMTkyMTYvMTc2OTQzNzkyNw/AABLH6YBKzwZu05CfsxWJzuKOiwb7USzxVvBKaw5Ztk" class="fotorama__img" style="width: 656px; height: 437.547px; left: 0px; top: -0.273438px;"></div><div class="fotorama__stage__frame fotorama__loaded fotorama__loaded--img" style="left: 658px;"><img src="https://api.cotality.com/trestle/Media/Property/PHOTO-Jpeg/1147278084/2/NTIyNC80MDUzLzIw/MjAvMTkyMTYvMTc2OTQzNzkyNw/JoLEAbCv5u9QKG_haNzFjGyFZQccbyn8hfXUEkkBPuU" class="fotorama__img" style="width: 656px; height: 437.547px; left: 0px; top: -0.273438px;"></div></div><div class="fotorama__arr fotorama__arr--prev fotorama__arr--disabled" tabindex="-1" role="button" disabled="disabled"></div><div class="fotorama__arr fotorama__arr--next" tabindex="0" role="button"></div><div class="fotorama__video-close"></div></div><div class="fotorama__nav-wrap"><div class="fotorama__nav fotorama__nav--thumbs fotorama__shadows--right" style="width: 656px;"><div class="fotorama__nav__shaft fotorama__grab" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);"><div class="fotorama__thumb-border" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px); width: 60px;"></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb fotorama__active" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb fotorama__loaded fotorama__loaded--img"><img src="https://api.cotality.com/trestle/Media/Property/PHOTO-Jpeg/1147278084/1/NTIyNC80MDUzLzIw/MjAvMTkyMTYvMTc2OTQzNzkyNw/AABLH6YBKzwZu05CfsxWJzuKOiwb7USzxVvBKaw5Ztk" class="fotorama__img" style="width: 95.9531px; height: 64px; left: -15.9766px; top: 0px;"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb fotorama__loaded fotorama__loaded--img"><img src="https://api.cotality.com/trestle/Media/Property/PHOTO-Jpeg/1147278084/2/NTIyNC80MDUzLzIw/MjAvMTkyMTYvMTc2OTQzNzkyNw/JoLEAbCv5u9QKG_haNzFjGyFZQccbyn8hfXUEkkBPuU" class="fotorama__img" style="width: 95.9531px; height: 64px; left: -15.9766px; top: 0px;"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb fotorama__loaded fotorama__loaded--img"><img src="https://api.cotality.com/trestle/Media/Property/PHOTO-Jpeg/1147278084/3/NTIyNC80MDUzLzIw/MjAvMTkyMTYvMTc2OTQzNzkyNw/MP04lb2ScEWgPREOpc-EcXHtqeE-DAgotKG-Lgr2K9A" class="fotorama__img" style="width: 95.9531px; height: 64px; left: -15.9766px; top: 0px;"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb fotorama__loaded fotorama__loaded--img"><img src="https://api.cotality.com/trestle/Media/Property/PHOTO-Jpeg/1147278084/4/NTIyNC80MDUzLzIw/MjAvMTkyMTYvMTc2OTQzNzkyNw/qSB1lbXiF1vVEphBV_NcXcWAeg1UD9y0j8zXogjGCTc" class="fotorama__img" style="width: 95.9531px; height: 64px; left: -15.9766px; top: 0px;"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb fotorama__loaded fotorama__loaded--img"><img src="https://api.cotality.com/trestle/Media/Property/PHOTO-Jpeg/1147278084/5/NTIyNC80MDUzLzIw/MjAvMTkyMTYvMTc2OTQzNzkyNw/W_v7yXc3DWTuf3d1O2nuHu-tw4bHt1dJdOxgqNSZw40" class="fotorama__img" style="width: 95.9531px; height: 64px; left: -15.9766px; top: 0px;"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb fotorama__loaded fotorama__loaded--img"><img src="https://api.cotality.com/trestle/Media/Property/PHOTO-Jpeg/1147278084/6/NTIyNC80MDUzLzIw/MjAvMTkyMTYvMTc2OTQzNzkyNw/CSntx-j5YGudcdu0i0y3doSQBMkT-epmjz01oRgSyHY" class="fotorama__img" style="width: 95.9531px; height: 64px; left: -15.9766px; top: 0px;"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb fotorama__loaded fotorama__loaded--img"><img src="https://api.cotality.com/trestle/Media/Property/PHOTO-Jpeg/1147278084/7/NTIyNC80MDUzLzIw/MjAvMTkyMTYvMTc2OTQzNzkyNw/bUwy7ZSNGeXQIFoExqP7zQW3SX19iuyZbrgka2iP184" class="fotorama__img" style="width: 95.9531px; height: 64px; left: -15.9766px; top: 0px;"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb fotorama__loaded fotorama__loaded--img"><img src="https://api.cotality.com/trestle/Media/Property/PHOTO-Jpeg/1147278084/8/NTIyNC80MDUzLzIw/MjAvMTkyMTYvMTc2OTQzNzkyNw/b9E3QUL12ornREUJzYmjvpZAjnAZwYiC4WCcUgLBdxE" class="fotorama__img" style="width: 95.9531px; height: 64px; left: -15.9766px; top: 0px;"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb fotorama__loaded fotorama__loaded--img"><img src="https://api.cotality.com/trestle/Media/Property/PHOTO-Jpeg/1147278084/9/NTIyNC80MDUzLzIw/MjAvMTkyMTYvMTc2OTQzNzkyNw/VjlCo8YixSdvZ4r5tk7fVv6Z2wtvY80VvAFhBmUySqE" class="fotorama__img" style="width: 95.9531px; height: 64px; left: -15.9766px; top: 0px;"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb fotorama__loaded fotorama__loaded--img"><img src="https://api.cotality.com/trestle/Media/Property/PHOTO-Jpeg/1147278084/10/NTIyNC80MDUzLzIw/MjAvMTkyMTYvMTc2OTQzNzkyNw/5hzw9bVJT-j3up8aPd4BZHVkI3lC-S74kriaQaHec7k" class="fotorama__img" style="width: 95.9531px; height: 64px; left: -15.9766px; top: 0px;"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div><div class="fotorama__nav__frame fotorama__nav__frame--thumb" tabindex="0" role="button" style="width: 64px;"><div class="fotorama__thumb"></div></div></div></div></div></div></div>
+											<!--<div class='fotorama' id='gallery' data-nav='thumbs'  data-width='100%' data-ratio='1.5' data-allowfullscreen='true' data-fit='cover' data-auto='false'>
+												
+										</div>-->
+									</div>
+								</div>
+							</div>	
+						</div>
+					</div> 
+				</div> 
+				
+				<div class="apexidxlitediv" data-bind="css: {'custom-css': globalAgentInfo.plan_pkg === 'lite'}">
+				<div class="apex-idxmdvstatus">
+					
+					<!-- ko if: $data.downPaymentHelp --><!-- /ko -->
+					
+					<ul>
+						<!-- ko if: $data.ListingStatus -->
+						<li data-bind="visible:$data.ListingStatus"><span class="feat-key">Status: </span><span class="feat-value"><!-- ko text: $data.ListingStatus -->Active<!-- /ko --><span></span></span></li>
+						<!-- /ko -->
+						
+						<!-- ko if: $data.daysOnMarket -->
+						<li data-bind="visible:$data.daysOnMarket"><span class="feat-key">Days on Market: </span><span class="feat-value"><!-- ko text: $data.daysOnMarket -->60<!-- /ko --><span></span></span></li>
+						<!-- /ko -->
+						
+						<!-- ko if: $data.YearBuilt -->
+						<li data-bind="visible:$data.YearBuilt"><span class="feat-key">Year built: </span><span class="feat-value"><!-- ko text: $data.YearBuilt -->2015<!-- /ko --> <span></span></span></li>
+						<!-- /ko -->
+						
+						<!-- ko if: $data.MLS_NUM -->
+						<li data-bind="visible:$data.MLS_NUM"><span class="feat-key">MLS# </span><span class="feat-value"><!-- ko text: $data.MLS_NUM -->PW25263214<!-- /ko --><span></span></span></li>
+						<!-- /ko -->
+						
+						<!-- ko if: $data.HOAFee1 --><!-- /ko -->
+
+						<!-- ko if: !($data.ListingStatus == 'Sold' && globalAgentInfo.agentId == 90) -->
+							<!-- ko if: $data.VirtualTour -->
+							<li data-bind="visible:$data.VirtualTour &amp;&amp; !($data.ListingStatus == 'Sold' &amp;&amp; globalAgentInfo.agentId == 90)"><span class="feat-key virtual-tour"><a data-bind="attr: { href: $data.VirtualTour}" target="_blank" href="https://my.matterport.com/show/?m=UnKU2GXuYDC&amp;brand=0">View Virtual Tour</a></span></li>
+							<!-- /ko -->
+						<!-- /ko -->
+						
+						<!-- ko if: $data.PropertyType && $data.PropertyType != 'Business Op' && $data.PropertyType != 'Commercial' -->
+						<li data-bind="visible:$data.PropertyType"><span class="feat-key">Type: </span><span class="feat-value"><!-- ko text: $data.PropertyType -->SingleFamilyResidence<!-- /ko --><span>
+						</span></span></li>
+						<!-- /ko -->
+						
+						<!-- ko if: $data.buildingName --><!-- /ko -->
+					
+					</ul>
+					<!-- ko if: $data.PropertyType && ($data.PropertyType == 'Business Op' || $data.PropertyType == 'Commercial') --><!-- /ko -->
+				</div> 
+				<div class="customliteagentinfo apex-idxmdvrequest listing-agent-info" data-bind="visible:$data.ListAgentLastName &amp;&amp; globalAgentInfo.plan_pkg === 'lite'" style="display: none;">
+					<span style="color: black;padding: 12px; font-size:16px;"><b id="req-info-text">Listing Agent</b></span>
+					<div class="apex-idxmdvbox-left">
+						<!-- ko if: $data.ListAgentLastName -->
+						<p data-bind="visible:$data.ListAgentLastName"><span data-bind="text: $data.ListAgentLastName.charAt(0)">E</span></p>
+						<!-- /ko -->
+					</div>
+					<!--<strong  data-bind="text:$data.systemName"></strong>-->
+					<div style="padding-top: 15px !important; color:  rgba(74, 74, 74, .89) !important;" class="apex-idxmdvbox-right">
+						<div data-bind="visible:$data.ListAgentLastName">
+							<span data-bind="text: $data.ListAgentLastName">Edith Israel</span>
+						</div>
+						<div data-bind="visible:$data.ListOfficeName">
+							<span data-bind="html: $data.ListOfficeName">Keller Williams Realty</span>
+						</div>
+						<div data-bind="visible:$data.IDXContactInfo" style="display: none;">
+							<span>
+								<a data-bind="text: $data.IDXContactInfo, attr:{href: ($data.IDXContactInfo.indexOf('@') &gt; -1 ? 'mailto:' : 'tel:') + $data.IDXContactInfo}" href="tel:"></a>
+							</span>
+						</div>
+					</div>
+				</div> 
+			</div>   
+			</div>
+		</div>
+
+		<!-- Qr Code Modal -->
+		<div id="qrModal" style="display:none !important; position:absolute; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5); z-index:4147483650 !important;  display:flex; justify-content:center; align-items:center;">
+			<div style="background:white; padding:20px; border-radius:8px; text-align:center; position:relative; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+				<span id="closeQR" style="position:absolute; top:2px; right:0px; cursor:pointer; font-size:50px;">×</span>
+				<div id="qrcodeContainer" style="margin-top:10px;"></div>
+				<a id="qrDownloadLink" style="display:block; margin-top:10px; color:#007bff;" download="qrcode.png">
+				Download QR Code
+				</a>
+			</div>
+		</div>
+		<!-- /Qr Code Modal -->
+
+		<div class="apex-idxmdvbutton" data-bind="visible: globalAgentInfo.plan_pkg !== 'lite'">
+		<div class="apex-idxmdvshare">
+		<div>
+			<!--<button class="apex-idxmdvyy apex-idxmdvdefaultbutton" type="button">-->
+			<div class="apex-idxmdvyy apex-idxmdvdefaultbutton">
+				<a href="javascript:void(0)" style="background: #fff;color: #d92228!important;" id="addToFav" data-bind="visible:$parent.globalVariable.koGsavedProperties().indexOf($parent.globalVariable.koGcurrentDetailViewId()) &lt; 0,click:$parent.addToFavorites"><i class="fa fa-heart-o"></i> Save</a>
+				
+				<div data-bind="visible:$parent.globalVariable.koGsavedProperties().indexOf($parent.globalVariable.koGcurrentDetailViewId()) &gt; -1" style="display: none;">
+					<a style="background: #fff; color: #d92228!important; " data-bind="click:$parent.unsaved" href="javascript:void(0)"><i class="fa fa-heart"></i>Saved</a>
+				</div>
+				</div>
+				</div>
+			<!--</button>-->
+			<div style="float:right; position:relative;">
+			<div>
+			<button class="apex-idxmdvyy apex-idxmdvdefaultbutton" data-bind="click:$parent.socialIcons" type="button">Share</button>
+			</div>
+			
+			<div id="apexidx-social-icons" style="display:none" class="apex-idxpopup">
+				<div class="a2a_kit a2a_default_style" data-a2a-url="https://tinyurl.com/24juu3zr" style="line-height: 16px;">
+					<a class="a2a_button_facebook" id="fbAddThisUrl" target="_blank" rel="nofollow noopener" href="/#facebook">
+						<img src="//apexidx.com/images/facebook.png" style="height:32px;width:32px;">
+					</a>
+					<a class="a2a_button_linkedin" id="ldAddThisUrl" target="_blank" rel="nofollow noopener" href="/#linkedin">
+						<img src="//apexidx.com/images/linkedin.png" style="height:32px;width:32px;margin-left:2px;">
+					</a>
+					<a class="a2a_button_twitter" id="twAddThisUrl" target="_blank" rel="nofollow noopener" href="/#twitter">
+						<img src="//apexidx.com/images/twitter.png" style="height:32px;width:32px;">
+					</a>
+					<input type="hidden" id="current-url" value="https://search.arrowheadrealtygroup.com/idx/homedetails/5571-Clover-Hill-Yorba-Linda-CA-92886-/F6A09095-A616-4A1C-8909-65284CA10303$detailViewId">
+					<a class="btn" id="copyThisUrl" data-clipboard-target="#current-url" title="Click to copy URL">
+					   <img src="//apexidx.com/images/copy-link.jpg" style="height:32px;width:32px;">
+					</a>
+				<div style="clear: both;"></div></div>
+				<div class="emailFriend">
+					<a href="javascript:void(0);" data-bind="click:$parent.emailToFriend">
+						<i class="fa fa-envelope" aria-hidden="true"></i> Email to a Friend
+					</a>
+				</div>
+			</div>
+			</div>
+	</div>		 
+			
+			<div class="apex-idxmdvblue">
+				
+				<div class="apex-idxmdvagent">
+					<div class="apex-idxmdvlistings-agent" style="margin-top:10px;">
+						
+						<div class="apex-idxmdvagent-profile">
+							<img class="detailviewm-img" data-bind="attr:{src:agentInfo.agent_pic}" src="/images/agentProfileImages/981_32276.jpg">
+						</div>
+	
+						<!-- <div class="apex-idxmdvagent-profile">
+							<img class="detailviewm-img" 
+								 data-bind="attr: { 
+									 src: agentInfo.agent_pic && agentInfo.agent_pic.includes('http') 
+										 ? agentInfo.agent_pic 
+										 : (agentInfo.agent_pic && !agentInfo.agent_pic.includes('http') ? IMAGEURL + 'images/agentProfileImages/' + agentInfo.agent_pic : IMAGEURL + 'images/agentProfileImages/agentDefaultImage.jpg') 
+								 }" 
+								 alt="Agent Profile Image" />
+						</div> -->
+						
+						<div class="apex-idxmdvright-agent-dtl">
+							<span class="apex-idxmdvpretext"> Presented By </span>
+							<span class="apex-idxmdvagent-name" data-bind="text:agentInfo.agentName">Carlos Angel Jaramillo</span>
+							<span class="apex-idxmdvcalbre-text">
+								<div data-bind="text: $parent.globalVariable.gLicHeading + agentInfo.agent_license">DRE# 01847350</div>
+								<div data-bind="text:agentInfo.office_name+','">Arrowhead Realty Group,</div> 
+							</span>
+							<span class="apex-idxmdvagent-address" data-bind="text:agentInfo.office_addr1">225 W. Hospitality Lane, Ste. 201F</span>
+							<span class="apex-idxmdvagent-address" data-bind="text:agentInfo.office_city+', '+agentInfo.office_state+' '+agentInfo.office_zip">San Bernardino, CA 92408</span>
+						</div> 
+						
+						<div class="apex-idxmdvtest">
+							<span class="apex-idxmdvagent-mobile">
+								<span class="apex-idxmdvmobile-icon">
+									<img src="//apexidx.com/images/phone-icon.png" alt="">
+								</span>
+								<a data-bind="attr:{href:'tel:'+agentInfo.agent_phone},text:agentInfo.agent_phone" href="tel:888-777-3556">888-777-3556</a>
+							</span>
+							<span class="apex-idxmdvagent-mobile">
+								<span class="apex-idxmdvemail-icon">
+									<img src="//apexidx.com/images/email-icon-sm.png" alt="">
+								</span>
+								<a data-bind="attr:{href:'mailto:'+agentInfo.agent_email}" href="mailto:carlos@cjrealestate365.com">Email</a>
+							</span>
+						</div>	
+					</div>			 
+				</div>
+				
+				<div class="apex-idxmdvrequest">
+					<span style="  color: black;   padding: 12px; font-size:16px;"><b id="req-info-text" data-bind="css: $data.requestInfoText == 'Showing Requested'? 'apexidx-showing-requested' : '' ,text:$data.requestInfoText">Request Info/Showing</b></span>
+						<!-- Error message alerts -->
+							<div class="alert alert-danger" id="error-msg-contact" style="display:none;"></div>
+						<!-- End Error message alerts -->
+						 
+						<!-- Success message alerts -->
+							<div class="alert alert-success" id="suc-msg-contact" style="display:none;margin-top: 10px;"></div>
+						<!-- Success message alerts end-->
+					<div class="apex-idxmdvbox">
+					<form name="requestForm" id="requestForm" method="post" data-bind="submit:$parent.SubmitRequestForm">
+						<input type="hidden" name="proId" data-bind="value:$data.proId" value="F6A09095-A616-4A1C-8909-65284CA10303">
+						<input type="text" class="apex-idxmdvdefaultinput" placeholder="Name" name="fname" id="res-fname">
+						<input type="text" class="apex-idxmdvdefaultinput" placeholder="Email" name="email" id="res-email">
+						<input type="text" class="apex-idxmdvdefaultinput" placeholder="Phone" name="phone">
+	
+						<!-- Ratedsoltech checkbox Frontend code Detail page -->
+						<div class="optinControl-msg" data-bind="visible: globalAgentInfo.optin_controller == 1" style="display: none;">
+							<label class="apex-idxmdvlike apex-idxmdvlike-label">
+								<input class="apex-idxmdvlike-checkbox" type="checkbox" name="optinControl-msg">
+								<span class="apex-idxmdvlike-text">
+								I agree to receive marketing and customer service calls and text messages from 
+								<span class="apexidx-listing-agent-name" data-bind="text:globalAgentInfo.agentName">Carlos Angel Jaramillo</span>.
+								Consent is not a condition of purchase. Msg/data rates may apply. Msg frequency varies. Reply STOP to unsubscribe. 
+								<a class="apex-idxmdvlike-link" style="color: #C00" data-bind="attr: { href: 'https://' + globalAgentInfo.domainName + '/privacy.aspx' }" target="_blank" href="https://arrowheadrealtygroup.com/privacy.aspx">Privacy Policy</a> &amp; 
+								<a class="apex-idxmdvlike-link" style="color: #C00" data-bind="attr: { href: 'https://' + globalAgentInfo.domainName + '/terms.aspx' }" target="_blank" href="https://arrowheadrealtygroup.com/terms.aspx">Terms of Service</a>.
+							</span>
+							</label>
+						</div>
+						<!-- Ratedsoltech checkbox Frontend code Detail page -->
+	
+						<input type="checkbox" class="apex-idxmdvkk apex-idxmdvdefaultinput" name="requestShowing" id="requestShowing" value="yes">
+						<div class="apex-idxmdvlike">I would like a showing</div>
+						<div class="showRequestShowing">
+						<label class="apex-idx-control-label" for="inputPassword">Date</label>
+						<input type="text" class="apex-idxmdvdefaultinput" name="dateTime" id="dateTime"> 
+						 <label class="apex-idx-control-label" for="inputPassword">I need a response:</label>
+						 <select name="needResponse" id="needResponse" class="styledInput" style="width:170px;">
+							<option selected="selected" value="Immediately">Immediately</option>
+							<option value="In the next week">In the next week</option>
+						 </select>
+						
+						 </div>
+						<textarea class="apex-idxmdvbrook" name="comment" id="comment" rows="4" cols="30" placeholder="comment" data-bind="value: 'I am interested in '+ $data.addressA+$data.addressB"> </textarea>
+						<input type="hidden" class="apex-idxmdvdefaultinput" name="mlsNum" id="mlsNum" data-bind="value: $data.MLS_NUM" value="PW25263214">
+						<button type="submit" class="apex-idxmdvss apex-idxmdvdefaultbutton ">Send Info</button>
+					</form>
+					</div>				  
+				</div>  
+				
+				<div class="why-hire-agent" style="display:none;"><a href="" target="_blank"><span class="arrow-icon"></span>Why you should have a buyers agent</a></div>
+				<div class="apex-idxmdvrequest listing-agent-info" data-bind="visible:$data.ListAgentLastName">
+					<span style="color: black;padding: 12px; font-size:16px;"><b id="req-info-text">Listing Agent</b></span>
+					<div class="apex-idxmdvbox-left">
+						<!-- ko if: $data.ListAgentLastName -->
+						<p data-bind="visible:$data.ListAgentLastName"><span data-bind="text: $data.ListAgentLastName.charAt(0)">E</span></p>
+						<!-- /ko -->
+					</div>
+					<!--<strong  data-bind="text:$data.systemName"></strong>-->
+					<div class="apex-idxmdvbox-right">
+						<ul>
+							<li data-bind="visible:$data.ListAgentLastName"><span data-bind="text: $data.ListAgentLastName">Edith Israel</span></li>
+							<li data-bind="visible:$data.ListOfficeName"><span data-bind="html: $data.ListOfficeName">Keller Williams Realty</span></li>
+							<li data-bind="visible:$data.IDXContactInfo" style="display: none;"><span>
+								
+								<a data-bind="text: $data.IDXContactInfo, attr:{href: ($data.IDXContactInfo.indexOf('@') &gt; -1 ? 'mailto:' : 'tel:') + $data.IDXContactInfo}" href="tel:"></a>
+							
+							</span></li>
+						</ul>
+					</div>
+				</div> 
+				
+			</div> 
+		</div> 
+		<div class="apex-idxmdvgray listing-attr">
+			<ul>
+				<li data-bind="visible:$data.systemName"><span>Source: </span><strong data-bind="text: $data.systemName">CRMLS IDX</strong></li>
+				<li data-bind="visible:$data.ListAgentLastName"><span>LA: </span><strong data-bind="text: $data.ListAgentLastName">Edith Israel</strong><span data-bind="visible:$data.ListAgentDRE, text:', '+$parent.globalVariable.gLicHeading+$data.ListAgentDRE">, DRE# 01399225</span></li>
+				<li data-bind="visible:$data.AltAgentLastName"><span>Co-LA: </span><strong data-bind="text: $data.AltAgentLastName">James Allen</strong><span data-bind="visible:$data.CoAgentDRE,text:', '+$parent.globalVariable.gLicHeading+$data.CoAgentDRE">, DRE# 01056460</span></li>
+				<li data-bind="visible:$data.Modified"><span>Listing Updated: </span><strong data-bind="text: $data.Modified">1/27/2026 12:06:56 PM</strong></li>
+				<li data-bind="visible:$data.ListOfficeName"><span>LO: </span><strong data-bind="html: $data.ListOfficeName">Keller Williams Realty</strong> </li>
+				<li data-bind="visible:$data.AltOfficeName"><span>Co-LO: </span><strong data-bind="html: $data.AltOfficeName">Keller Williams Realty</strong> </li>
+				<li data-bind="visible:$data.databaseUpdated"><span>Database Updated: </span><strong data-bind="text: $data.databaseUpdated">2026/01/30 06:35:16</strong></li>
+				<li data-bind="visible:$data.SaleAgentLastName" style="display: none;"><span>SA: </span><strong data-bind="html: $data.SaleAgentLastName"></strong> <span data-bind="visible:$data.SaleAgentDRE,text:', '+$parent.globalVariable.gLicHeading+$data.SaleAgentDRE" style="display: none;">, DRE# undefined</span></li>
+				<li data-bind="visible:$data.SaleOfficeName" style="display: none;"><span>SO: </span><strong data-bind="html: $data.SaleOfficeName"></strong> <span data-bind="visible:$data.AltSaleOfficeID,text:', '+$parent.globalVariable.gLicHeading+$data.AltSaleOfficeID,text:', '+$parent.globalVariable.gLicHeading+$data.AltSaleOfficeID" style="display: none;">, DRE# undefined</span></li>
+				<li data-bind="visible:$data.AltSaleAgentLastName" style="display: none;"><span>Co-SA: </span><strong data-bind="html: $data.AltSaleAgentLastName"></strong> <span data-bind="visible:$data.CoSaleAgentDRE,text:', '+$parent.globalVariable.gLicHeading+$data.CoSaleAgentDRE" style="display: none;">, DRE# undefined</span></li>
+				<li data-bind="visible:$data.AltSaleOfficeName" style="display: none;"><span>Co-SO: </span><strong data-bind="html: $data.AltSaleOfficeName"></strong> <span data-bind="visible:$data.AltSaleOfficeID,text:', '+$parent.globalVariable.gLicHeading+$data.AltSaleOfficeID" style="display: none;">, DRE# undefined</span></li>
+				<li data-bind="visible:$data.IDXContactInfo" style="display: none;"><span>IDX Contact Info: </span><strong data-bind="html: $data.IDXContactInfo"></strong> </li>
+			</ul>
+		
+		</div>
+
+		<div class="apex-idxmdvcontent">
+			<h2 class="apexidx-dview-desc">Description</h2>
+			<!-- ko if: $data.rem -->
+				<div data-bind="text: $data.rem">Welcome to a truly extraordinary estate home—an unforgettable blend of luxury, craftsmanship, and refined design. Completely reimagined with the finest materials, this residence lives like a brand-new custom build. Brazilian walnut floors, Cambria Quartzite surfaces, and exquisite Cherry wood cabinetry elevate every space. The chef’s kitchen is a masterpiece, showcasing an expansive island, generous storage, and premier appliances including a SubZero refrigerator, Viking professional range with dual ovens, Viking electric oven/microwave, dual Thermador dishwashers, two Perlick beverage centers, a Scotsman commercial ice machine, and three Wolf warming drawers. The kitchen opens seamlessly to the family room and dining area, creating an inviting environment for both intimate living and grand entertaining. Upstairs, the luxurious primary suite offers a cozy sitting area with a fireplace, a private balcony, a spa-inspired bath with a steam shower and soaking tub, and a spectacular walk-in closet. All additional bedrooms feature ensuite baths crafted with marble, granite, and travertine. A spacious bonus room, upstairs laundry, and flexible downstairs wing—ideal for a gym, guest quarters, office, or a potential ADU—add exceptional versatility. The backyard is an enchanting oasis, the product of a $500,000 investment. Surrounded by fruit trees and lush blooms, the resort-style pool, waterfall, spa, and firepit create a private paradise reminiscent of an English garden. This remarkable home must be experienced to be truly appreciated.</div>
+			<!-- /ko -->
+		</div>	
+		
+		<div class="apex-idxmdventry">
+			<!-- ko if: $data.ntFt -->
+			<h2 class="apexidx-dview-feat" data-bind="text: 'Features'">Features</h2>
+			<ul>
+			<!-- ko foreach: { data: ntFt } -->
+			<li data-bind="text:$data">Convection Oven</li>
+			
+			<li data-bind="text:$data">Dishwasher</li>
+			
+			<li data-bind="text:$data">ENERGY STAR Qualified Appliances</li>
+			
+			<li data-bind="text:$data">ENERGY STAR Qualified Water Heater</li>
+			
+			<li data-bind="text:$data">Electric Range</li>
+			
+			<li data-bind="text:$data">Freezer</li>
+			
+			<li data-bind="text:$data">Gas Range</li>
+			
+			<li data-bind="text:$data">High Efficiency Water Heater</li>
+			
+			<li data-bind="text:$data">Hot Water Circulator</li>
+			
+			<li data-bind="text:$data">Ice Maker</li>
+			
+			<li data-bind="text:$data">Microwave</li>
+			
+			<li data-bind="text:$data">Refrigerator</li>
+			
+			<li data-bind="text:$data">Range Hood</li>
+			
+			<li data-bind="text:$data">Self Cleaning Oven</li>
+			
+			<li data-bind="text:$data">Tankless Water Heater</li>
+			
+			<li data-bind="text:$data">Vented Exhaust Fan</li>
+			
+			<li data-bind="text:$data">Water Heater</li>
+			
+			<li data-bind="text:$data">Warming Drawer</li>
+			
+			<li data-bind="text:$data">Contemporary Style</li>
+			
+			<li data-bind="text:$data">Custom Style</li>
+			
+			<li data-bind="text:$data">Traditional Style</li>
+			
+			<li data-bind="text:$data">Central Air Cooling</li>
+			
+			<li data-bind="text:$data">Drywall Exterior</li>
+			
+			<li data-bind="text:$data">Fiber Cement Exterior</li>
+			
+			<li data-bind="text:$data">Frame Exterior</li>
+			
+			<li data-bind="text:$data">Concrete Exterior</li>
+			
+			<li data-bind="text:$data">Stucco Exterior</li>
+			
+			<li data-bind="text:$data">Vinyl Fence</li>
+			
+			<li data-bind="text:$data">Fireplace Living Room</li>
+			
+			<li data-bind="text:$data">Fireplace PrimaryBedroom</li>
+			
+			<li data-bind="text:$data">Carpet Floors</li>
+			
+			<li data-bind="text:$data">Stone Floors</li>
+			
+			<li data-bind="text:$data">Tile Floors</li>
+			
+			<li data-bind="text:$data">Wood Floors</li>
+			
+			<li data-bind="text:$data">Slab</li>
+			
+			<li data-bind="text:$data">Central Heat</li>
+			
+			<li data-bind="text:$data">Fireplaces Heat</li>
+			
+			<li data-bind="text:$data">Breakfast Bar</li>
+			
+			<li data-bind="text:$data">Built-In Features</li>
+			
+			<li data-bind="text:$data">Ceiling Fans</li>
+			
+			<li data-bind="text:$data">Separate Formal Dining Room</li>
+			
+			<li data-bind="text:$data">Eat-in Kitchen</li>
+			
+			<li data-bind="text:$data">High Ceilings</li>
+			
+			<li data-bind="text:$data">Multiple Staircases</li>
+			
+			<li data-bind="text:$data">Pantry</li>
+			
+			<li data-bind="text:$data">Pull Down Attic Stairs</li>
+			
+			<li data-bind="text:$data">Quartz Counters</li>
+			
+			<li data-bind="text:$data">Recessed Lighting</li>
+			
+			<li data-bind="text:$data">Wired For Data</li>
+			
+			<li data-bind="text:$data">Wired For Sound</li>
+			
+			<li data-bind="text:$data">Bedroom On Main Level</li>
+			
+			<li data-bind="text:$data">Instant Hot Water</li>
+			
+			<li data-bind="text:$data">Primary Suite</li>
+			
+			<li data-bind="text:$data">Utility Room</li>
+			
+			<li data-bind="text:$data">Walk In Pantry</li>
+			
+			<li data-bind="text:$data">Walk-In Closets</li>
+			
+			<li data-bind="text:$data">AttachedCarport</li>
+			
+			<li data-bind="text:$data">Concrete</li>
+			
+			<li data-bind="text:$data">Covered</li>
+			
+			<li data-bind="text:$data">DoorMulti</li>
+			
+			<li data-bind="text:$data">DoorSingle</li>
+			
+			<li data-bind="text:$data">Driveway</li>
+			
+			<li data-bind="text:$data">DrivewayUpSlopeFromStreet</li>
+			
+			<li data-bind="text:$data">GarageFacesFront</li>
+			
+			<li data-bind="text:$data">Garage</li>
+			
+			<li data-bind="text:$data">GarageDoorOpener</li>
+			
+			<li data-bind="text:$data">Paved</li>
+			
+			<li data-bind="text:$data">Private</li>
+			
+			<li data-bind="text:$data">PullThrough</li>
+			
+			<li data-bind="text:$data">Storage</li>
+			
+			<li data-bind="text:$data">Concrete Patio</li>
+			
+			<li data-bind="text:$data">Covered Patio</li>
+			
+			<li data-bind="text:$data">Stone Patio</li>
+			
+			<li data-bind="text:$data">Filtered Pool</li>
+			
+			<li data-bind="text:$data">Heated Pool</li>
+			
+			<li data-bind="text:$data">InGround Pool</li>
+			
+			<li data-bind="text:$data">Private Pool</li>
+			
+			<li data-bind="text:$data">Waterfall Pool</li>
+			
+			<li data-bind="text:$data">Concrete Roof</li>
+			
+			<li data-bind="text:$data">PublicSewer Sewer</li>
+			
+			<li data-bind="text:$data">Heated Spa</li>
+			
+			<li data-bind="text:$data">InGround Spa</li>
+			
+			<li data-bind="text:$data">Private Spa</li>
+			
+			<li data-bind="text:$data">Hills View</li>
+			
+			<li data-bind="text:$data">Neighborhood View</li>
+			
+			<li data-bind="text:$data">TreesWoods View</li>
+			
+			<li data-bind="text:$data">Public Water</li>
+			
+			<li data-bind="text:$data">DoublePaneWindows</li>
+			
+			<li data-bind="text:$data">PlantationShutters</li>
+			
+			<li data-bind="text:$data">Shutters</li>
+			<!-- /ko -->
+			</ul>
+			<!-- /ko -->
+		</div>
+		<div class="apex-idxmdvgray">
+			
+			<div class="apex-idxmdvnav">
+				<!-- ko if: $data.systemName == 'Miami IDX'  --><!-- /ko -->
+				
+				<!-- ko if: $data.systemName == 'San Diego MLS'  --><!-- /ko -->
+				
+				<!-- ko if: $data.systemName == 'CRISNET IDX' --><!-- /ko -->
+				
+				<!-- ko if: $data.systemName == 'VCRDS IDX' --><!-- /ko -->
+				
+				<!-- ko if: $data.systemName == 'TheMLS' --><!-- /ko -->
+				
+				<!-- ko if: $data.systemName == 'ITech IDX' --><!-- /ko -->
+				
+				<!-- ko if: $data.systemName == 'Bakersfield IDX' --><!-- /ko -->
+				
+				<!-- ko if: $data.systemName == 'Beaches IDX' --><!-- /ko -->
+				
+				<!-- ko if: $data.systemName != 'Miami IDX' && $data.systemName != 'San Diego MLS' && $data.systemName != 'CRISNET IDX' && $data.systemName != 'Beaches IDX' && $data.systemName != 'ITech IDX' && $data.systemName != 'TheMLS' && $data.systemName != 'VCRDS IDX' && $data.systemName != 'Bakersfield IDX' --> 
+				<p style="margin-bottom:0px" ;="">			
+				Based on information from California Regional Multiple Listing Service, Inc. as of <span data-bind="text:$parent.currentDate + ' ' + globalAgentInfo.lastListingsProcessTime">1/31/2026 07:33:12 AM</span> and /or other sources. All data, including all measurements and calculations of area, is obtained from various sources and has not been, and will not be, verified by broker or MLS. All information should be independently reviewed and verified for accuracy. Properties may or may not be listed by the office/agent presenting the information.</p>
+				<!-- /ko -->
+				<input type="hidden" data-bind="value: systemName" value="CRMLS IDX">
+	
+				<!-- ko if: $data.systemName == 'CSMAR IDX' --><!-- /ko -->
+			</div>	
+				<p tabindex="0" class="idx-board" style="text-align: center;">IDX Powered by RealtyTech Inc.</p>
+		</div>
+		
+	  
+		<div class="map-area-cntr apex-idxDVmaps">	
+			<!-- ko ifnot: $parent.isUserAgentGcrawler -->
+			<iframe width="100%" height="300" frameborder="0" style="border:0" data-bind="attr:{src:'https://www.google.com/maps/embed/v1/place?key=AIzaSyBdPDhnGrUrRtYU_e5L2KpF4ukgxIMjkpE&amp;q='+$data.gmapAdress}" allowfullscreen="" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBdPDhnGrUrRtYU_e5L2KpF4ukgxIMjkpE&amp;q=5571+Clover+Hill+Yorba+Linda%2C+CA+92886-">
+			</iframe>		
+			 <!-- /ko -->
+		</div>
+		<div class="apex-idxmdvlast" style="display:none;">
+			<div class="apex-idxmdvwordwrap">
+				<span class="apexidx-dview-school"> Nearby Schools </span>
+				<table style="table-layout:fixed"> 
+					<tbody><tr>
+						<th class="apex-idx-schoolCols">Rating</th>
+						<th class="idxmdvweb apex-idx-schoolCols">School Name</th>
+						<th class="apex-idx-schoolCols">Grades</th>
+						<th class="apex-idx-schoolCols">Distance</th>
+					</tr>
+					
+					<!-- ko if: $data.nSchool -->
+						<!-- ko foreach: { data: nSchool } --><!-- /ko -->
+					<!-- /ko -->
+				</tbody></table>
+			</div>				
+		</div>	
+			
+		<div class="apex-idxmdvright">
+			 <span class="apexidx-dview-mcal">Mortage Calculator </span>
+			<div class="apex-idxmdvthird searchBy">					
+				<div class="apex-idxmdvlost">
+					<div class="apex-idxmdvone">					
+						<div class="apex-idxmdvearchby"><label><b>Price of Home ($)</b></label></div>
+						<input type="text" class="apex-idxmdvdefaultinput" name="poh" id="poh" data-bind="value:$data.listprice.replace(/[$,]+/g,'')">		
+					</div>
+						  
+					<div class="apex-idxmdvtwo">
+					   <div class="apex-idxmdvearchby"><label><b>Down Payment (%)</b></label> </div>
+						   <input type="text" class="apex-idxmdvdefaultinput" name="dPayment" id="dPayment" value="20.00">		
+					</div>
+				</div>
+					 
+				<div class="apex-idxmdvword">
+					<div class="apex-idxmdvthree">
+						<div class="apex-idxdvearchby"><label><b>Interest Rate (%)</b></label></div>
+						<input type="text" class="apex-idxmdvdefaultinput" name="iRate" id="iRate" value="4.00">	
+					</div>
+					  
+					<div class="apex-idxmdvfour">
+						<div class="apex-idxdvearchby"><label><b>Loan Term  (years)</b></label></div>
+						<input type="text" class="apex-idxmdvdefaultinput" name="ltyears" id="ltyears" value="30">	
+					</div>
+				</div>
+				<div class="apex-idxmdvfive">
+					<div class="apex-idxmdvcalculate">
+					  <button type="button" class="apex-idxmdvdefaultbutton" data-bind="click:$parent.calculator">Calculate</button>
+					</div>	
+					<div class=" apex-idxmdvenable">
+						<div class="dolar">$</div>				
+						<input type="text" class="apex-idxmdvdefaultinput" name="calAmmount" id="calAmmount">
+					</div>
+				</div>				
+			</div>
+		</div>
+	</div>
+	
+	  <!----------------------------- Start code for EMAIL TO FREIND ----------------------> 
+	<div class="apexidx-emailFreind-html" style="display:none;">
+	<table cellpadding="0" cellspacing="0" border="0" width="600" style="width:670px !important;margin-bottom: 20px;text-align:center !important;font-family: Arial, Helvetica, sans-serif !important;" id="apexidx-emailFreind-html">
+	<tbody>
+	   <tr>
+		  <td colspan="3" style="padding-top: 5px !important;width: 560px !important;">
+			 <table style="border-collapse: separate !important;" border="0" cellspacing="0" cellpadding="0">
+				<tbody>
+				   <tr>
+					  <td style="" valign="top" colspan="2">
+						 <table style="border-collapse: separate !important;">
+							<tbody>
+							   <tr>
+								  <td style="padding: 5px !important;margin-top: 5px !important;width: 558px !important; background-color: #fff !important;font-size: 12px !important;border: solid 1px #C4C4C4 !important;text-align: left !important;">
+									 <table cellpadding="0" cellspacing="0" border="0">
+										<tbody>
+											<tr>
+											  <td style="vertical-align:top !important; height: 230px !important;text-align:center !important;font-size: 12px !important;font-weight: bold !important;color: black !important;background-color: #DDDDDD !important;border: solid 1px #A4A4A4 !important;line-height: 18px !important;">
+												 <a style="text-decoration: none !important;" target="_blank" class="apexidx_emalToFrnd_proUrl" href="https://search.arrowheadrealtygroup.com/idx/homedetails/5571-Clover-Hill-Yorba-Linda-CA-92886-/F6A09095-A616-4A1C-8909-65284CA10303$detailViewId">
+													<img name="thumb" width="670" height="400" border="0" id="apexidx-emailToFreind-fImg" src="https://api.cotality.com/trestle/Media/Property/PHOTO-Jpeg/1147278084/1/NTIyNC80MDUzLzIw/MjAvMTkyMTYvMTc2OTQzNzkyNw/AABLH6YBKzwZu05CfsxWJzuKOiwb7USzxVvBKaw5Ztk">
+												 </a>
+											  </td>
+											</tr>
+										   <tr>
+											  <td style="" valign="top" colspan="2">
+												 <table style="border-collapse: separate !important;margin-bottom: 5px !important;padding-top: 5px !important;">
+													<tbody>
+													   <tr>
+														  <td width="670" style="border: solid 1px #A4A4A4 !important; font-size: 16px !important; padding: 10px !important; line-height: 16px !important; text-align: left !important;">
+															 <a style="text-decoration: none !important;" class="apexidx_emalToFrnd_proUrl" target="_blank" href="https://search.arrowheadrealtygroup.com/idx/homedetails/5571-Clover-Hill-Yorba-Linda-CA-92886-/F6A09095-A616-4A1C-8909-65284CA10303$detailViewId"><span style="font-weight: 600!important;font-size: 19px!important;color: blue!important;word-spacing: 3px!important;" id="apexidx_emalToFrnd_proAddrA">5571 Clover Hill </span></a>
+															 <span style="color: red !important;float:right;font-weight: 700!important;font-size: 14px!important;" id="apexidx_emalToFrnd_proPrice">$3,499,000</span>    
+															<br> 		
+															 <a style="text-decoration: none !important;" class="apexidx_emalToFrnd_proUrl" target="_blank" href="https://search.arrowheadrealtygroup.com/idx/homedetails/5571-Clover-Hill-Yorba-Linda-CA-92886-/F6A09095-A616-4A1C-8909-65284CA10303$detailViewId"><span style="font-weight: 300!important;font-size: 15px!important;color: blue!important;padding-top:6px;float:left;" id="apexidx_emalToFrnd_proAddrB">Yorba Linda, CA 92886- </span></a>
+														  </td>
+													   </tr>
+													   <tr>
+														  <td width="670" style="margin-top: 5px !important; border: solid 1px #A4A4A4 !important;background-color: #fff !important;padding: 10px 5px 0px 10px !important; height: 135px !important;">
+															 <table cellpadding="0" cellspacing="0" border="0" style="line-height: 17px !important;font-size: 12px !important;height:120px">
+																<tbody>
+																   <tr style="background-color: #fff !important;margin:7px 0!important;" id="apexidx_emalToFrnd_proMfeat1">
+																   <td style="border-bottom:1px solid grey!important;padding-left: 3px !important;font-weight: 600!important;margin-right: 10px!important;color: rgba(74,74,74,.89)!important;text-align: left !important;" width="100">Beds:</td><td width="129" style="border-bottom:1px solid grey!important;font-size:16px !important;color: grey!important;text-align: left !important;">6</td><td style="border-bottom:1px solid grey!important;padding-left: 3px !important;font-weight: 600!important;margin-right: 10px!important;color: rgba(74,74,74,.89)!important;text-align: left !important;" width="100">Baths:</td><td width="129" style="border-bottom:1px solid grey!important;font-size:16px !important;color: grey!important;text-align: left !important;">7</td><td style="border-bottom:1px solid grey!important;padding-left: 3px !important;font-weight: 600!important;margin-right: 10px!important;color: rgba(74,74,74,.89)!important;text-align: left !important;" width="100">SqFt:</td><td width="129" style="border-bottom:1px solid grey!important;font-size:16px !important;color: grey!important;text-align: left !important;">6,863</td></tr>
+																   <tr style="background-color: #fff !important;border-bottom:1px solid rgba(128,128,128,.14)!important;margin:7px 0!important;" id="apexidx_emalToFrnd_proMfeat2">
+																   <td style="border-bottom:1px solid grey!important;padding-left: 3px !important;font-weight: 600!important;margin-right: 10px!important;color: rgba(74,74,74,.89)!important;text-align: left !important;" width="100">Lot Size:</td><td width="129" style="border-bottom:1px solid grey!important;font-size:16px !important;color: grey!important;text-align: left !important;">22,000</td><td style="border-bottom:1px solid grey!important;padding-left: 3px !important;font-weight: 600!important;margin-right: 10px!important;color: rgba(74,74,74,.89)!important;text-align: left !important;" width="100">Days on Market:</td><td width="129" style="border-bottom:1px solid grey!important;font-size:16px !important;color: grey!important;text-align: left !important;">60</td><td style="border-bottom:1px solid grey!important;padding-left: 3px !important;font-weight: 600!important;margin-right: 10px!important;color: rgba(74,74,74,.89)!important;text-align: left !important;" width="100">Type:</td><td width="129" style="border-bottom:1px solid grey!important;font-size:16px !important;color: grey!important;text-align: left !important;">SingleFamilyResidence</td></tr>
+																   <tr style="background-color: #fff !important;border-bottom:1px solid rgba(128,128,128,.14)!important;margin:7px 0!important;" id="apexidx_emalToFrnd_proMfeat3">
+																   <td style="border-bottom:1px solid grey!important;padding-left: 3px !important;font-weight: 600!important;margin-right: 10px!important;color: rgba(74,74,74,.89)!important;text-align: left !important;" width="100">Year Built:</td><td width="129" style="border-bottom:1px solid grey!important;font-size:16px !important;color: grey!important;text-align: left !important;">2015</td><td style="border-bottom:1px solid grey!important;padding-left: 3px !important;font-weight: 600!important;margin-right: 10px!important;color: rgba(74,74,74,.89)!important;text-align: left !important;" width="110">MLS #:</td><td width="129" style="border-bottom:1px solid grey!important;font-size:16px !important;color: grey!important;text-align: left !important;">PW25263214</td><td style="border-bottom:1px solid grey!important;padding-left: 3px !important;font-weight: 600!important;margin-right: 10px!important;color: rgba(74,74,74,.89)!important;text-align: left !important;" width="110">Status:</td><td width="129" style="border-bottom:1px solid grey!important;font-size:16px !important;color: grey!important;text-align: left !important;">Active</td></tr>
+																</tbody>
+															 </table>
+														  </td>
+													   </tr>
+													</tbody>
+												 </table>
+											  </td>
+										   </tr>
+											<tr>
+											  <td width="288" style="background-color:#fff !important; height: 150px !important; border: solid 1px #C4C4C4 !important;">
+												 <table cellpadding="0" cellspacing="0" border="0">
+													<tbody>
+													   <tr>
+														  <td style="text-align: left !important;">
+															 <div id="ctl00_MainContent_ctl00_agentsInfo_firstAgentInfoDiv">
+																<table cellpadding="0" cellspacing="0" border="0">
+																   <tbody>
+																	  <tr>
+																		 <td id="ctl00_MainContent_ctl00_agentsInfo_agentInfo1_agentPictureDiv" style="padding-right: 15px !important; padding-left: 5px !important; padding-top: 5px !important;">
+																			<a id="ctl00_MainContent_ctl00_agentsInfo_agentInfo1_agentPicLink" href="javascript:void(0)" target="_top" style="display:inline-block !important;border-width:0px !important;">
+																			<img id="apexidx_emalToFrnd_agentImg" style="border-width:0px !important;width:110px;" src="https://apexidx.com/images/agentProfileImages/981_32276.jpg">
+																			</a>
+																		 </td>
+																		 <td>
+																			<table border="0" style="font-size: 12px !important;">
+																			   <tbody>
+																				  <tr>
+																					 <td style="width: 128px !important;padding-top: 5px !important; height: 16px !important; line-height: 16px !important; float: left!important;color: #000!important;font-size: 15px!important;font-weight: 600!important;">
+																						Presented by
+																					 </td>
+																				  </tr>
+																				  <tr style="float: left!important;width: 100%!important;font-size: 16px!important;color: #777!important;">
+																					 <td style="height: 25px !important; line-height: 16px !important;" id="apexidx_emalToFrnd_agentName">Carlos Angel Jaramillo</td>
+																				  </tr>
+																				   <tr>
+																					 <td style="line-height: 16px !important;color: #333!important;" id="apexidx_emalToFrnd_agentCallBre">DRE# 01847350</td>
+																				  </tr>
+																				  <tr>
+																					 <td style="width: 100%!important;font-size: 13px!important;color: #333!important;height: 30px;" id="apexidx_emalToFrnd_agentOffName">Arrowhead Realty Group</td>
+																				  </tr>
+																				  <tr>
+																					 <td style="float: left!important;width: 100%!important;font-size: 12px!important;color: #333!important;height: 25px;" id="apexidx_emalToFrnd_officeAddr1">225 W. Hospitality Lane, Ste. 201F</td>
+																				  </tr>
+																				</tbody>
+																			</table>
+																		 </td>
+																		 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+																		 <td align="right" style="height: 16px !important; line-height: 16px !important; font-size: 12px !important; color: Black !important;">
+																				<table cellpadding="0" cellspacing="0" border="0" valign="middle" style="line-height: 16px !important;">
+																				   <tbody>
+																					<tr><td>&nbsp;</td></tr> <tr><td>&nbsp;</td></tr> <tr><td>&nbsp;</td></tr> <tr><td>&nbsp;</td></tr>
+																					  <tr>
+																						 <td width="18">
+																							<img src="//apexidx.com/images/iconPhone.gif" border="0" width="16" height="16">
+																						 </td>
+																						 <td align="left" style="font-size: 12px !important;width:100px !important;">
+																							<a id="apexidx_emalToFrnd_agentPhone" href="tel:888-777-3556">888-777-3556</a>
+																						 </td>
+																						 </tr>
+																						<tr><td>&nbsp;</td></tr>
+																						 <tr>
+																						 <td width="18">
+																							<img src="//apexidx.com/images/iconEmail.gif" border="0" width="14" height="10">
+																						 </td>
+																						 <td align="left" style="width:250px">
+																							<a id="apexidx_emalToFrnd_agentEmail" style="color: blue !important; font-weight: bold !important; text-decoration: none !important;font-size: 12px !important;" href="mailto:carlos@cjrealestate365.com?subject=Inquiry about CRMLS IDX, MLS PW25263214, Property:5571 Clover Hill ,Yorba Linda, CA 92886- ">carlos@cjrealestate365.com</a>
+																						 </td>
+																					  </tr>
+																				   </tbody>
+																				</table>
+																			</td>
+																		</tr>
+																   </tbody>
+																</table>
+															 </div>
+														  </td>
+														  <td style="text-align: left !important;">
+															 <div id="ctl00_MainContent_ctl00_agentsInfo_secondAgentInfoDiv">
+															 </div>
+														  </td>
+													   </tr>
+													</tbody>
+												 </table>
+												</td>
+											</tr>
+										</tbody>
+									 </table>
+								   </td>
+							   </tr>
+							  </tbody>
+						 </table>
+					  </td>
+				   </tr>
+				</tbody>
+			 </table>
+			 </td>
+			 </tr>
+		</tbody>
+	</table>
+	</div>
+	</div>

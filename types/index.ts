@@ -77,6 +77,7 @@ export interface MortgageCalculatorResult {
 export interface Property {
   id: string
   slug: string
+  listingType?: string // Sale, Rent, Lease, etc (raw string from site)
   status: 'for-sale' | 'pending' | 'sold'
   price: number
   address: {
@@ -98,6 +99,17 @@ export interface Property {
   mlsNumber?: string
   daysOnMarket?: number
   hoaFees?: number
+  listingInfo?: {
+    source?: string | null
+    listingAgent?: string | null
+    listingAgentDRE?: string | null
+    coListingAgent?: string | null
+    coListingAgentDRE?: string | null
+    listingUpdated?: string | null
+    listingOffice?: string | null
+    coListingOffice?: string | null
+    databaseUpdated?: string | null
+  }
   createdAt: string
   updatedAt: string
 }

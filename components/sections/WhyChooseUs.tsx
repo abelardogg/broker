@@ -1,29 +1,29 @@
-import { Users, Clock, Award, HeartHandshake } from 'lucide-react'
+import { MapPin, Home, Award, HeartHandshake } from 'lucide-react'
 
 const features = [
   {
-    icon: <Users className="h-6 w-6" />,
-    title: 'One Team',
+    icon: <MapPin className="h-6 w-6" />,
+    title: 'Local Experts',
     description:
-      'Real estate and mortgage under one roof. No juggling multiple companies or coordinators.',
+      'We live and work in San Bernardino. We know every neighborhood, school, and street in the Inland Empire.',
   },
   {
-    icon: <Clock className="h-6 w-6" />,
-    title: 'Faster Closings',
+    icon: <Home className="h-6 w-6" />,
+    title: 'Full Service',
     description:
-      'When your agent and lender work together, deals close faster with fewer headaches.',
+      'From first-time buyers to luxury estates, we handle all property types with expertise and care.',
   },
   {
     icon: <Award className="h-6 w-6" />,
-    title: 'Local Experts',
+    title: 'Proven Results',
     description:
-      'We live and work in San Bernardino. We know every neighborhood in the Inland Empire.',
+      'Years of successful transactions and satisfied clients. We get results that exceed expectations.',
   },
   {
     icon: <HeartHandshake className="h-6 w-6" />,
     title: 'Personal Service',
     description:
-      'Direct access to your team throughout the entire process. No call centers, no runaround.',
+      'Direct access to your agent throughout the entire process. No call centers, just personal attention.',
   },
 ]
 
@@ -38,12 +38,12 @@ export function WhyChooseUs() {
               Why Arrowhead
             </span>
             <h2 id="why-headline" className="text-display-sm md:text-display-md text-neutral-900 mt-3 mb-6">
-              Buy Your Home & Get Your Loan in One Place
+              Your Trusted Real Estate Partner
             </h2>
             <p id="why-subheadline" className="text-lg text-neutral-600 mb-10">
-              We&apos;re the only team you need. From finding your dream home in
-              San Bernardino to securing the best mortgage rate, we handle it all
-              so you can focus on what matters.
+              Finding the perfect home takes local knowledge, dedication, and expertise.
+              We bring all three to help you buy or sell with confidence in San Bernardino
+              and the Inland Empire.
             </p>
 
             <div id="why-features" className="grid sm:grid-cols-2 gap-8">
@@ -96,12 +96,12 @@ export function WhyChooseUs() {
                         Google Rating
                       </div>
                     </div>
-                    <div id="stat-close">
+                    <div id="stat-sales">
                       <div className="text-4xl md:text-5xl font-display font-bold text-brand-600">
-                        21
+                        $50M+
                       </div>
                       <div className="text-neutral-600 mt-1">
-                        Day Avg Close
+                        Properties Sold
                       </div>
                     </div>
                   </div>
