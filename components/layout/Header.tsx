@@ -86,7 +86,7 @@ export function Header() {
 
           {/* CTA + Mobile menu button */}
           <div className="flex items-center gap-4">
-            <Button href="/apply" size="sm" className="hidden sm:inline-flex">
+            <Button href="/contact" size="sm" className="hidden sm:inline-flex">
               Apply Now
             </Button>
             <button
@@ -133,7 +133,7 @@ export function Header() {
                 </div>
               ))}
               <div className="mt-4 px-4">
-                <Button href="/apply" className="w-full">
+                <Button href="/contact" className="w-full">
                   Apply Now
                 </Button>
               </div>
