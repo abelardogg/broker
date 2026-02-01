@@ -14,15 +14,14 @@ export function Footer() {
           <div className="lg:col-span-2">
             <div className="mb-6">
               <img
-                src="/img/arrowhead-logos-v2/concept-03-lineal/logo-horizontal-fondo-oscuro.svg"
-                alt="Arrowhead Realty & Mortgage"
+                src="/img/arrowhead-logos-v2/concept-03-lineal/logo-principal-fondo-oscuro.svg"
+                alt="Arrowhead Realty Group"
                 className="h-14 w-auto"
               />
             </div>
             <p className="text-neutral-300 mb-6 max-w-md">
-              Your trusted partner for real estate and home financing in San
-              Bernardino and the Inland Empire. Buy your home and get your loan
-              with one team.
+              Your trusted real estate partner in San Bernardino and the Inland
+              Empire. Expert services for buyers and sellers.
             </p>
             <div className="space-y-3">
               <a
@@ -85,26 +84,26 @@ export function Footer() {
             <ul className="space-y-3">
               <li>
                 <Link
-                  href="/mortgage"
+                  href="/properties"
                   className="text-neutral-300 hover:text-white transition-colors"
                 >
-                  Home Loans
+                  Browse Properties
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/real-estate"
+                  href="/contact"
                   className="text-neutral-300 hover:text-white transition-colors"
                 >
-                  Real Estate
+                  Buy a Home
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/calculators"
+                  href="/contact"
                   className="text-neutral-300 hover:text-white transition-colors"
                 >
-                  Calculators
+                  Sell Your Home
                 </Link>
               </li>
               <li>
@@ -112,7 +111,7 @@ export function Footer() {
                   href="/apply"
                   className="text-neutral-300 hover:text-white transition-colors"
                 >
-                  Apply Now
+                  Schedule Showing
                 </Link>
               </li>
             </ul>
@@ -125,17 +124,9 @@ export function Footer() {
         <div className="container-wide py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-neutral-400">
             <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
-              <span>© {currentYear} Arrowhead Realty & Mortgage</span>
-              <span>NMLS #{siteConfig.nmls}</span>
+              <span>© {currentYear} Arrowhead Realty Group</span>
               {siteConfig.dre && <span>DRE #{siteConfig.dre}</span>}
-              <a
-                href="https://www.nmlsconsumeraccess.org"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-white transition-colors"
-              >
-                NMLS Consumer Access
-              </a>
+              <span>Equal Housing Opportunity</span>
             </div>
             <div className="flex items-center gap-4">
               <Link
@@ -159,10 +150,8 @@ export function Footer() {
             </div>
           </div>
           <p className="mt-4 text-xs text-neutral-500 text-center md:text-left">
-            Equal Housing Lender. This is not a commitment to lend or extend
-            credit. Conditions and limitations apply. Information and/or data
-            are subject to change without notice. All loans are subject to
-            credit approval.
+            Equal Housing Opportunity. All properties subject to prior sale, change,
+            or withdrawal. Information deemed reliable but not guaranteed. DRE #{siteConfig.dre}
           </p>
         </div>
       </div>

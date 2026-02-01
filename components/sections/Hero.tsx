@@ -26,29 +26,28 @@ export function Hero() {
           <div id="hero-badge" className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-8 animate-fade-in">
             <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
             <span className="text-sm text-white/90">
-              Real Estate & Mortgage Services in the Inland Empire
+              Real Estate Services in the Inland Empire
             </span>
           </div>
 
           {/* Headline - SEO optimized */}
           <h1 id="hero-headline" className="text-display-md md:text-display-lg lg:text-display-xl text-white mb-6 animate-slide-up">
-            San Bernardino{' '}
+            Find Your Dream Home in{' '}
             <span id="hero-headline-accent" className="text-gradient bg-gradient-to-r from-brand-300 to-accent-400">
-              Mortgage Broker
-            </span>{' '}
-            & Real Estate
+              San Bernardino
+            </span>
           </h1>
 
           {/* Subheadline - SEO optimized */}
           <p id="hero-subheadline" className="text-xl md:text-2xl text-white/80 mb-10 max-w-2xl animate-slide-up animation-delay-100">
-            Buy your home and get your loan in one place. FHA, VA, Conventional
-            & Jumbo loans with competitive rates for the Inland Empire.
+            Expert real estate services for buyers and sellers in San Bernardino
+            and the Inland Empire. Let us help you find your perfect home.
           </p>
 
           {/* CTAs */}
           <div id="hero-cta-container" className="flex flex-wrap items-center gap-4 animate-slide-up animation-delay-200">
-            <Button id="hero-cta-primary" href="/apply" variant="secondary" size="lg">
-              Get Pre-Approved
+            <Button id="hero-cta-primary" href="/properties" variant="secondary" size="lg">
+              Browse Homes
               <ArrowRight className="h-5 w-5" />
             </Button>
             <Button
@@ -65,12 +64,6 @@ export function Hero() {
 
           {/* Trust indicators */}
           <div id="hero-trust-indicators" className="mt-16 flex flex-wrap items-center gap-6 text-white/70 animate-fade-in animation-delay-300">
-            <div className="flex items-center gap-2">
-              <svg className="h-5 w-5 text-brand-400" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-              </svg>
-              <span className="text-sm">NMLS #{siteConfig.nmls}</span>
-            </div>
             {siteConfig.dre && (
               <div className="flex items-center gap-2">
                 <svg className="h-5 w-5 text-brand-400" fill="currentColor" viewBox="0 0 20 20">
@@ -83,7 +76,13 @@ export function Hero() {
               <svg className="h-5 w-5 text-brand-400" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
-              <span className="text-sm">Equal Housing Lender</span>
+              <span className="text-sm">Equal Housing Opportunity</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <svg className="h-5 w-5 text-brand-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+              <span className="text-sm">Local Experts Since 2010</span>
             </div>
           </div>
         </div>
