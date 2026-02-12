@@ -5,6 +5,7 @@ import './globals.css'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { PageView } from '@/components/analytics/PageView'
+import { StructuredData } from '@/components/seo/StructuredData'
 
 // Body font - clean and modern
 const dmSans = DM_Sans({
@@ -121,6 +122,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             style={{ display: 'none', visibility: 'hidden' }}
           />
         </noscript>
+        <StructuredData />
         <PageView />
         <Header />
         <main>{children}</main>
