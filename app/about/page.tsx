@@ -3,8 +3,16 @@ import { Button } from '@/components/ui/Button'
 import { siteConfig } from '@/lib/config'
 
 export const metadata = {
-  title: 'About Us | San Bernardino Real Estate & Mortgage Experts',
-  description: 'Meet the team at Arrowhead Realty & Mortgage. Local experts helping families buy homes and secure financing in San Bernardino and the Inland Empire.',
+  title: 'About Us | Real Estate Agent San Bernardino California',
+  description: 'Meet The Arrowhead Group — local real estate agents and mortgage experts helping families buy a house and sell your house in San Bernardino and the Inland Empire. DRE #01847350',
+  alternates: {
+    canonical: 'https://thearrowheadgroup.com/about',
+  },
+  openGraph: {
+    title: 'About The Arrowhead Group | Real Estate Agent California',
+    description: 'Local real estate agents and mortgage experts in San Bernardino and the Inland Empire. DRE #01847350',
+    url: 'https://thearrowheadgroup.com/about',
+  },
 }
 
 export default function AboutPage() {

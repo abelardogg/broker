@@ -22,20 +22,19 @@ export function CTASection() {
       <div className="container-wide relative z-10">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-display-sm md:text-display-md text-white mb-6">
-            Ready to start your home journey?
+            Ready to Buy a House in California?
           </h2>
           <p className="text-xl text-white/80 mb-10">
-            Get pre-approved in minutes. Our team is here to guide you every
-            step of the way, from application to closing.
+            Browse homes for sale and explore mortgage options with your dedicated real estate agent. Whether you're a first time home buyer or ready to sell your house, we're here to help you every step of the way.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Button
-              href="/apply"
+              href="/contact"
               variant="secondary"
               size="lg"
               className="bg-accent-500 text-brand-600 hover:bg-neutral-100"
             >
-              Start Your Application
+              Get Started Today
               <ArrowRight className="h-5 w-5" />
             </Button>
             <Button

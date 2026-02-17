@@ -10,8 +10,16 @@ const icons: Record<string, React.ComponentType<{ className?: string }>> = {
 }
 
 export const metadata = {
-  title: 'Loan Programs',
-  description: 'Explore our mortgage loan programs including Conventional, FHA, VA, and Jumbo loans.',
+  title: 'Loan Programs California | FHA, VA, Conventional & Jumbo Loans',
+  description: 'Explore mortgage loan programs in California. Conventional, FHA, VA, and Jumbo loans for first time home buyers and homeowners in San Bernardino and the Inland Empire.',
+  alternates: {
+    canonical: 'https://thearrowheadgroup.com/loan-programs',
+  },
+  openGraph: {
+    title: 'Mortgage Loan Programs California | The Arrowhead Group',
+    description: 'Conventional, FHA, VA, and Jumbo mortgage options for California home buyers. Find the right loan program for your situation.',
+    url: 'https://thearrowheadgroup.com/loan-programs',
+  },
 }
 
 export default function LoanProgramsPage() {

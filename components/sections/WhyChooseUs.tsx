@@ -3,27 +3,27 @@ import { MapPin, Home, Award, HeartHandshake } from 'lucide-react'
 const features = [
   {
     icon: <MapPin className="h-6 w-6" />,
-    title: 'Local Experts',
+    title: 'California Real Estate Experts',
     description:
-      'We live and work in San Bernardino. We know every neighborhood, school, and street in the Inland Empire.',
+      'Local real estate agents who know San Bernardino, Fontana, Rialto, and every neighborhood in the Inland Empire.',
   },
   {
     icon: <Home className="h-6 w-6" />,
-    title: 'Full Service',
+    title: 'First Time Home Buyer Specialists',
     description:
-      'From first-time buyers to luxury estates, we handle all property types with expertise and care.',
+      'Whether you\'re a first time home buyer or buying your dream property, we guide you through every step.',
   },
   {
     icon: <Award className="h-6 w-6" />,
-    title: 'Proven Results',
+    title: 'Proven Track Record',
     description:
-      'Years of successful transactions and satisfied clients. We get results that exceed expectations.',
+      'Successfully helping clients buy and sell houses in California with competitive mortgage options.',
   },
   {
     icon: <HeartHandshake className="h-6 w-6" />,
-    title: 'Personal Service',
+    title: 'Dedicated Real Estate Agent',
     description:
-      'Direct access to your agent throughout the entire process. No call centers, just personal attention.',
+      'Direct access to your real estate agent from listing to closing. No automated systems, just personal service.',
   },
 ]
 
@@ -38,12 +38,10 @@ export function WhyChooseUs() {
               Why Arrowhead
             </span>
             <h2 id="why-headline" className="text-display-sm md:text-display-md text-neutral-900 mt-3 mb-6">
-              Your Trusted Real Estate Partner
+              Your Trusted Real Estate Agent in California
             </h2>
             <p id="why-subheadline" className="text-lg text-neutral-600 mb-10">
-              Finding the perfect home takes local knowledge, dedication, and expertise.
-              We bring all three to help you buy or sell with confidence in San Bernardino
-              and the Inland Empire.
+              Whether you want to buy a house, sell your house, or explore property for sale in California, we provide expert real estate services. From first time home buyers to seasoned investors, we offer personalized guidance and competitive mortgage options.
             </p>
 
             <div id="why-features" className="grid sm:grid-cols-2 gap-8">

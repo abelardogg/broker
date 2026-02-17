@@ -4,8 +4,16 @@ import { Phone, ArrowRight, CheckCircle, Home, Shield, Star, Building2 } from 'l
 import { formatPhoneForTel } from '@/lib/utils'
 
 export const metadata = {
-  title: 'Home Loans San Bernardino | FHA, VA, Conventional Mortgage Broker',
-  description: 'Get pre-approved for a home loan in San Bernardino & Inland Empire. FHA, VA, Conventional, and Jumbo loans with competitive rates. Local mortgage broker.',
+  title: 'Mortgage Options California | FHA, VA, Conventional Home Loans',
+  description: 'Explore mortgage options in California with The Arrowhead Group. FHA, VA, Conventional, and Jumbo home loans for first time home buyers and homeowners in San Bernardino and the Inland Empire.',
+  alternates: {
+    canonical: 'https://thearrowheadgroup.com/mortgage',
+  },
+  openGraph: {
+    title: 'Mortgage Options California | The Arrowhead Group',
+    description: 'FHA, VA, Conventional, and Jumbo home loans in San Bernardino and the Inland Empire. Get pre-approved today.',
+    url: 'https://thearrowheadgroup.com/mortgage',
+  },
 }
 
 const icons: Record<string, React.ReactNode> = {

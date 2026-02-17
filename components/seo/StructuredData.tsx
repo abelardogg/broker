@@ -59,11 +59,12 @@ export function StructuredData() {
       // 'https://www.instagram.com/arrowheadgroup',
       // 'https://www.linkedin.com/company/arrowheadgroup',
     ],
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '5',
-      reviewCount: '0',
-    },
+    // TODO: Add aggregateRating once reviews are collected
+    // aggregateRating: {
+    //   '@type': 'AggregateRating',
+    //   ratingValue: '5',
+    //   reviewCount: '24',
+    // },
     priceRange: '$$',
     knowsAbout: [
       'Real Estate',

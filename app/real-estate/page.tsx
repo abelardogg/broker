@@ -5,8 +5,16 @@ import { formatPhoneForTel } from '@/lib/utils'
 import { FeaturedListings } from '@/components/sections/FeaturedListings'
 
 export const metadata = {
-  title: 'Real Estate Agent San Bernardino | Buy & Sell Homes Inland Empire',
-  description: 'Find your dream home in San Bernardino & Inland Empire. Expert real estate services for buyers and sellers. Combined with mortgage services for a seamless experience.',
+  title: 'Real Estate Agent California | Buy a House or Sell Your House',
+  description: 'Trusted real estate agent in California helping you buy a house or sell your house in San Bernardino and the Inland Empire. Find homes for sale and property for sale with expert guidance.',
+  alternates: {
+    canonical: 'https://thearrowheadgroup.com/real-estate',
+  },
+  openGraph: {
+    title: 'Real Estate Agent California | The Arrowhead Group',
+    description: 'Buy a house or sell your house in San Bernardino and the Inland Empire with a trusted California real estate agent.',
+    url: 'https://thearrowheadgroup.com/real-estate',
+  },
 }
 
 export default function RealEstatePage() {

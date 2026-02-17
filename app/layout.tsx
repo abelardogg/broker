@@ -21,31 +21,37 @@ const plusJakarta = Plus_Jakarta_Sans({
   display: 'swap',
 })
 
+const BASE_URL = 'https://thearrowheadgroup.com'
+
 // Site-wide metadata
 export const metadata: Metadata = {
-  metadataBase: new URL('https://arrowheadrealty.com'),
+  metadataBase: new URL(BASE_URL),
   title: {
-    default: 'Arrowhead Realty Group | Real Estate Agent San Bernardino, CA',
-    template: '%s | Arrowhead Realty Group',
+    default: 'The Arrowhead Group | Real Estate Agent San Bernardino, CA',
+    template: '%s | The Arrowhead Group',
   },
   description:
-    'Find your dream home in San Bernardino and the Inland Empire with Arrowhead Realty Group. Expert real estate services for buyers and sellers. DRE #01847350',
+    'Find houses for sale in California with The Arrowhead Group. Expert real estate agent services for buyers and sellers in San Bernardino and the Inland Empire. DRE #01847350',
   keywords: [
-    'real estate',
-    'homes for sale',
-    'San Bernardino',
-    'Inland Empire',
-    'California',
-    'real estate agent',
-    'buy home',
-    'sell home',
-    'Fontana',
-    'Rialto',
-    'Ontario',
-    'Rancho Cucamonga',
-    'Redlands',
+    'houses for sale California',
+    'homes for sale San Bernardino',
+    'real estate agent California',
+    'buy a house California',
+    'sell your house California',
+    'first time home buyer',
+    'mortgage options California',
+    'property for sale Inland Empire',
+    'Fontana homes for sale',
+    'Rialto real estate',
+    'Ontario CA homes',
+    'Rancho Cucamonga real estate',
   ],
-  authors: [{ name: 'Arrowhead Realty Group' }],
+  authors: [{ name: 'The Arrowhead Group', url: BASE_URL }],
+  creator: 'The Arrowhead Group',
+  publisher: 'The Arrowhead Group',
+  alternates: {
+    canonical: BASE_URL,
+  },
   icons: {
     icon: '/img/arrowhead-logos-v2/concept-03-lineal/icono-fondo-oscuro.svg',
     apple: '/img/arrowhead-logos-v2/concept-03-lineal/icono-fondo-oscuro.svg',
@@ -53,29 +59,39 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://arrowheadrealty.com',
-    siteName: 'Arrowhead Realty Group',
-    title: 'Arrowhead Realty Group | Real Estate Agent San Bernardino, CA',
+    url: BASE_URL,
+    siteName: 'The Arrowhead Group',
+    title: 'The Arrowhead Group | Real Estate Agent San Bernardino, CA',
     description:
-      'Find your dream home in San Bernardino and the Inland Empire with expert real estate services.',
+      'Find houses for sale in California with The Arrowhead Group. Expert real estate agent services for buyers and sellers in San Bernardino and the Inland Empire.',
     images: [
       {
-        url: '/og-image.jpg',
+        url: `${BASE_URL}/og-image.jpg`,
         width: 1200,
         height: 630,
-        alt: 'Arrowhead Realty Group',
+        alt: 'The Arrowhead Group - Real Estate Agent California',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Arrowhead Realty Group | Real Estate Agent San Bernardino, CA',
+    title: 'The Arrowhead Group | Real Estate Agent San Bernardino, CA',
     description:
-      'Find your dream home in San Bernardino and the Inland Empire with expert real estate services.',
+      'Find houses for sale in California. Expert real estate agent services in San Bernardino and the Inland Empire.',
+    images: [`${BASE_URL}/og-image.jpg`],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    // google: 'your-google-verification-code', // Add after verifying GSC
   },
 }
 

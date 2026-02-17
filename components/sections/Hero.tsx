@@ -26,28 +26,27 @@ export function Hero() {
           <div id="hero-badge" className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-8 animate-fade-in">
             <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
             <span className="text-sm text-white/90">
-              Real Estate Services in the Inland Empire
+              Trusted Real Estate Agent in California
             </span>
           </div>
 
           {/* Headline - SEO optimized */}
           <h1 id="hero-headline" className="text-display-md md:text-display-lg lg:text-display-xl text-white mb-6 animate-slide-up">
-            Find Your Dream Home in{' '}
+            Houses for Sale in{' '}
             <span id="hero-headline-accent" className="text-gradient bg-gradient-to-r from-brand-300 to-accent-400">
-              San Bernardino
+              California
             </span>
           </h1>
 
           {/* Subheadline - SEO optimized */}
           <p id="hero-subheadline" className="text-xl md:text-2xl text-white/80 mb-10 max-w-2xl animate-slide-up animation-delay-100">
-            Expert real estate services for buyers and sellers in San Bernardino
-            and the Inland Empire. Let us help you find your perfect home.
+            Your trusted real estate agent helping you buy a house or sell your house in San Bernardino and the Inland Empire. Browse homes for sale and explore mortgage options with expert guidance.
           </p>
 
           {/* CTAs */}
           <div id="hero-cta-container" className="flex flex-wrap items-center gap-4 animate-slide-up animation-delay-200">
             <Button id="hero-cta-primary" href="/properties" variant="secondary" size="lg">
-              Browse Homes
+              View Homes for Sale
               <ArrowRight className="h-5 w-5" />
             </Button>
             <Button

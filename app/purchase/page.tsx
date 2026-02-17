@@ -3,8 +3,16 @@ import { Button } from '@/components/ui/Button'
 import Link from 'next/link'
 
 export const metadata = {
-  title: 'Home Purchase',
-  description: 'Ready to buy a home? We offer competitive rates and personalized guidance through every step of the home buying process.',
+  title: 'Buy a House in California | First Time Home Buyer Loans',
+  description: 'Ready to buy a house in California? The Arrowhead Group helps first time home buyers and experienced buyers find homes for sale and secure the best mortgage options in San Bernardino.',
+  alternates: {
+    canonical: 'https://thearrowheadgroup.com/purchase',
+  },
+  openGraph: {
+    title: 'Buy a House in California | The Arrowhead Group',
+    description: 'First time home buyer programs and purchase loans in San Bernardino and the Inland Empire, California.',
+    url: 'https://thearrowheadgroup.com/purchase',
+  },
 }
 
 const steps = [

@@ -2,8 +2,16 @@ import { TrendingDown, DollarSign, Home, Clock, ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 
 export const metadata = {
-  title: 'Refinance',
-  description: 'Lower your rate, reduce your payment, or tap into your home equity. Explore refinance options with Arrowhead Mortgage.',
+  title: 'Refinance Your Mortgage California | Lower Your Rate Today',
+  description: 'Refinance your mortgage in California with The Arrowhead Group. Lower your rate, reduce your monthly payment, or cash out home equity. Serving San Bernardino and the Inland Empire.',
+  alternates: {
+    canonical: 'https://thearrowheadgroup.com/refinance',
+  },
+  openGraph: {
+    title: 'Refinance Your Mortgage California | The Arrowhead Group',
+    description: 'Lower your mortgage rate and reduce your monthly payment. California refinance options from The Arrowhead Group.',
+    url: 'https://thearrowheadgroup.com/refinance',
+  },
 }
 
 const refinanceTypes = [
