@@ -7,6 +7,8 @@ import { requireAuth } from '@/lib/admin-auth'
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
+const ADMIN_PATH = '/mgmt-c141f580'
+
 async function getStats() {
   const [allProperties, allLoanPrograms] = await Promise.all([
     db.select().from(properties),
@@ -34,7 +36,7 @@ export default async function AdminDashboard() {
       value: stats.totalProperties,
       subtitle: `${stats.activeProperties} active`,
       icon: Building2,
-      href: '/admin/properties',
+      href: `${ADMIN_PATH}/properties`,
       color: 'blue',
     },
     {
@@ -42,7 +44,7 @@ export default async function AdminDashboard() {
       value: stats.totalLoanPrograms,
       subtitle: `${stats.activeLoanPrograms} active`,
       icon: FileText,
-      href: '/admin/loan-programs',
+      href: `${ADMIN_PATH}/loan-programs`,
       color: 'green',
     },
   ]
@@ -93,13 +95,13 @@ export default async function AdminDashboard() {
           <h2 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Link
-              href="/admin/properties/new"
+              href={`${ADMIN_PATH}/properties/new`}
               className="px-4 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition text-center"
             >
               Add New Property
             </Link>
             <Link
-              href="/admin/loan-programs/new"
+              href={`${ADMIN_PATH}/loan-programs/new`}
               className="px-4 py-3 bg-green-600 text-white rounded-md hover:bg-green-700 transition text-center"
             >
               Add New Loan Program

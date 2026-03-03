@@ -10,6 +10,8 @@ import { notFound } from 'next/navigation'
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
+const ADMIN_PATH = '/mgmt-c141f580'
+
 export default async function EditPropertyPage({
   params,
 }: {
@@ -33,7 +35,7 @@ export default async function EditPropertyPage({
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8">
           <Link
-            href="/admin/properties"
+            href={`${ADMIN_PATH}/properties`}
             className="inline-flex items-center space-x-2 text-sm text-gray-600 hover:text-gray-900 mb-4"
           >
             <ArrowLeft className="w-4 h-4" />

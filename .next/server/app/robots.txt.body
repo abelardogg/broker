@@ -1,0 +1,12 @@
+User-Agent: *
+Allow: /
+Disallow: /admin
+Disallow: /admin/*
+Disallow: /mgmt-c141f580
+Disallow: /mgmt-c141f580/*
+Disallow: /api/admin
+Disallow: /api/admin/*
+Disallow: /api/mgmt-c141f580
+Disallow: /api/mgmt-c141f580/*
+
+Sitemap: https://thearrowheadgroup.com/sitemap.xml

@@ -7,6 +7,8 @@ import { Plus, Edit } from 'lucide-react'
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
+const ADMIN_PATH = '/mgmt-c141f580'
+
 export default async function LoanProgramsPage() {
   await requireAuth()
 
@@ -23,7 +25,7 @@ export default async function LoanProgramsPage() {
             <p className="mt-2 text-gray-600">Manage your loan program offerings</p>
           </div>
           <Link
-            href="/admin/loan-programs/new"
+            href={`${ADMIN_PATH}/loan-programs/new`}
             className="flex items-center space-x-2 px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition"
           >
             <Plus className="w-5 h-5" />
@@ -86,7 +88,7 @@ export default async function LoanProgramsPage() {
                 <div className="flex items-center justify-between pt-4 border-t border-gray-200">
                   <span className="text-xs text-gray-500">Order: {program.displayOrder}</span>
                   <Link
-                    href={`/admin/loan-programs/${program.id}/edit`}
+                    href={`${ADMIN_PATH}/loan-programs/${program.id}/edit`}
                     className="inline-flex items-center space-x-1 text-sm text-blue-600 hover:text-blue-700"
                   >
                     <Edit className="w-4 h-4" />
@@ -102,7 +104,7 @@ export default async function LoanProgramsPage() {
           <div className="bg-white rounded-lg shadow p-12 text-center">
             <p className="text-gray-500 mb-4">No loan programs found</p>
             <Link
-              href="/admin/loan-programs/new"
+              href={`${ADMIN_PATH}/loan-programs/new`}
               className="inline-flex items-center space-x-2 px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition"
             >
               <Plus className="w-5 h-5" />

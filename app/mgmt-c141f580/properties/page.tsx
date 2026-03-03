@@ -9,6 +9,8 @@ import { desc } from 'drizzle-orm'
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
+const ADMIN_PATH = '/mgmt-c141f580'
+
 export default async function PropertiesPage() {
   await requireAuth()
 
@@ -25,7 +27,7 @@ export default async function PropertiesPage() {
             <p className="mt-2 text-gray-600">Manage your property listings</p>
           </div>
           <Link
-            href="/admin/properties/new"
+            href={`${ADMIN_PATH}/properties/new`}
             className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
           >
             <Plus className="w-5 h-5" />
@@ -37,7 +39,7 @@ export default async function PropertiesPage() {
           <div className="bg-white rounded-lg shadow p-12 text-center">
             <p className="text-gray-500 mb-4">No properties found</p>
             <Link
-              href="/admin/properties/new"
+              href={`${ADMIN_PATH}/properties/new`}
               className="inline-flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
             >
               <Plus className="w-5 h-5" />
@@ -119,7 +121,7 @@ export default async function PropertiesPage() {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                       <Link
-                        href={`/admin/properties/${property.id}/edit`}
+                        href={`${ADMIN_PATH}/properties/${property.id}/edit`}
                         className="text-blue-600 hover:text-blue-900 mr-4"
                       >
                         <Edit className="w-4 h-4 inline" />
