@@ -1,3 +1,9 @@
+import { config } from 'dotenv'
+import { resolve } from 'path'
+
+// Load .env.local file
+config({ path: resolve(process.cwd(), '.env.local') })
+
 import { db, properties, loanPrograms, adminUsers } from './index'
 import { hash } from 'bcryptjs'
 
