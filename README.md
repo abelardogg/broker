@@ -11,13 +11,33 @@ Modern real estate website built with Next.js 14, Tailwind CSS, and TypeScript.
 - **Language**: TypeScript
 - **Icons**: Lucide React
 - **Email**: Nodemailer (Gmail SMTP)
+- **Database**: SQLite with Drizzle ORM
+- **Image Storage**: Cloudflare R2 (FREE 10GB)
 - **Deployment**: Digital Ocean Droplet with PM2 & Nginx
+- **Analytics**: Google Analytics (G-WNMTKLDNRY) & Google Tag Manager (GTM-KFZSRT8G)
+
+## Key Features
+
+- **SEO optimized** with canonical links, Open Graph, and structured data (JSON-LD)
+- **Dynamic sitemap** generation for Google Search Console
+- **Responsive design** with Tailwind CSS
+- **Contact form** with email notifications
+- **Admin Panel** with SQLite CMS for managing properties and loan programs
+- **Property listings** with modal gallery
+- **Image uploads** to Cloudflare R2 storage
+- **Mortgage calculator**
+- **Google Tag Manager** page view tracking
+
+📋 **For complete technical specification, see [SPEC.md](./SPEC.md)**
 
 ## Getting Started (Local Development)
 
 ```bash
 # Install dependencies
 npm install
+
+# Setup database (first time only)
+npm run db:setup
 
 # Run development server
 npm run dev
@@ -28,6 +48,19 @@ npm run build
 # Start production server
 npm start
 ```
+
+## Admin Panel
+
+Access the admin panel at `/admin/login` to manage:
+- Properties (create, edit, delete)
+- Loan Programs
+- Upload images to Cloudflare R2
+
+**Default credentials:**
+- Username: `admin`
+- Password: `admin123`
+
+⚠️ **Change these in production!**
 
 Open [http://localhost:3000](http://localhost:3000) to view the site.
 
@@ -63,7 +96,24 @@ Create a `.env.local` file in the root directory:
 EMAIL_USER=your-email@gmail.com
 EMAIL_PASS=your-gmail-app-password
 EMAIL_TO=recipient@example.com
-NODE_ENV=production
+
+# Database
+DATABASE_PATH=./data/arrowhead.db
+
+# Security (CHANGE IN PRODUCTION!)
+SESSION_SECRET=change-this-to-a-random-secret-in-production
+
+# Admin credentials (used for initial seed)
+ADMIN_USERNAME=admin
+ADMIN_PASSWORD=admin123
+ADMIN_EMAIL=your-email@example.com
+
+# Cloudflare R2 Storage
+R2_ACCOUNT_ID=your-cloudflare-account-id
+R2_ACCESS_KEY_ID=your-r2-access-key-id
+R2_SECRET_ACCESS_KEY=your-r2-secret-access-key
+R2_BUCKET_NAME=your-bucket-name
+R2_PUBLIC_URL=https://your-bucket-url.r2.dev
 ```
 
 **Note:** Never commit `.env.local` to git (already in `.gitignore`)
@@ -169,15 +219,39 @@ npm install
 nano /var/www/arrowhead-realty/broker/.env.local
 ```
 
-Add:
+Add (replace with your actual values):
 ```env
-EMAIL_USER=your-email@gmail.com
+# Email Configuration
+EMAIL_USER=arrowheadrealty.contact@gmail.com
 EMAIL_PASS=your-gmail-app-password
-EMAIL_TO=recipient@example.com
-NODE_ENV=production
+EMAIL_TO=abelardogg.dev@gmail.com
+
+# Database
+DATABASE_PATH=./data/arrowhead.db
+
+# Security - GENERATE NEW SECRET!
+# Generate with: openssl rand -base64 32
+SESSION_SECRET=CHANGE-THIS-TO-RANDOM-SECRET-IN-PRODUCTION
+
+# Admin credentials (change password!)
+ADMIN_USERNAME=admin
+ADMIN_PASSWORD=CHANGE-THIS-PASSWORD
+ADMIN_EMAIL=your-email@example.com
+
+# Cloudflare R2 Storage
+R2_ACCOUNT_ID=98790d4f49ee22e1f1c64c0427ee77cf
+R2_ACCESS_KEY_ID=your-access-key-id
+R2_SECRET_ACCESS_KEY=your-secret-access-key
+R2_BUCKET_NAME=arrowhead
+R2_PUBLIC_URL=https://pub-xxxxxxxx.r2.dev
 ```
 
 Save with `Ctrl+O`, Enter, `Ctrl+X`
+
+**IMPORTANT:** Generate a random SESSION_SECRET:
+```bash
+openssl rand -base64 32
+```
 
 ### 7. Build Application
 
@@ -198,7 +272,24 @@ scp -r .next dev@your-droplet-ip:/var/www/arrowhead-realty/broker/
 scp .env.local dev@your-droplet-ip:/var/www/arrowhead-realty/broker/
 ```
 
-### 8. Setup PM2 (Process Manager)
+### 8. Setup Database (First Time Only)
+
+```bash
+cd /var/www/arrowhead-realty/broker
+
+# Create data directory
+mkdir -p data
+
+# Run database setup (creates tables and seeds initial data)
+npm run db:setup
+```
+
+This will:
+- Create `data/arrowhead.db` SQLite database
+- Create tables for properties, loan programs, and admin users
+- Seed initial data
+
+### 9. Setup PM2 (Process Manager)
 
 ```bash
 # On the server
@@ -219,7 +310,7 @@ pm2 status
 pm2 logs arrowhead-realty
 ```
 
-### 9. Configure Nginx
+### 10. Configure Nginx
 
 ```bash
 # Create Nginx config
@@ -260,7 +351,7 @@ sudo nginx -t
 sudo systemctl restart nginx
 ```
 
-### 10. Setup SSL (Let's Encrypt)
+### 11. Setup SSL (Let's Encrypt)
 
 ```bash
 # Install Certbot
@@ -278,7 +369,7 @@ sudo certbot --nginx -d thearrowheadgroup.com -d www.thearrowheadgroup.com
 sudo certbot renew --dry-run
 ```
 
-### 11. Configure Firewall (Optional)
+### 12. Configure Firewall (Optional)
 
 ```bash
 sudo ufw allow OpenSSH
@@ -495,9 +586,20 @@ Already in `.gitignore`:
 ### Recommended Backups
 
 Backup these periodically:
-- `/var/www/arrowhead-realty/broker/.env.local`
-- `/etc/nginx/sites-available/arrowhead-realty`
+- `/var/www/arrowhead-realty/broker/.env.local` - Environment variables
+- `/var/www/arrowhead-realty/broker/data/arrowhead.db` - **CRITICAL: Database file**
+- `/etc/nginx/sites-available/arrowhead-realty` - Nginx config
 - SSL certificates auto-renew (no backup needed)
+
+**Database Backup Script:**
+```bash
+# On server
+cd /var/www/arrowhead-realty/broker
+cp data/arrowhead.db data/arrowhead.db.backup-$(date +%Y%m%d)
+
+# Download to local machine
+scp dev@your-droplet-ip:/var/www/arrowhead-realty/broker/data/arrowhead.db ./arrowhead-backup.db
+```
 
 ---
 
@@ -517,5 +619,56 @@ Private - All rights reserved
 
 ---
 
-**Last Updated:** 2026-02-01
+## SEO & Metadata
+
+### Implemented
+- ✅ Canonical links on all pages
+- ✅ Per-page metadata with Open Graph tags
+- ✅ JSON-LD structured data (RealEstateAgent, LocalBusiness, Website)
+- ✅ Dynamic sitemap at `/sitemap.xml`
+- ✅ Google Tag Manager integration with page view tracking
+- ✅ Google Analytics 4 integration
+- ✅ Robots.txt configuration
+
+### Target Keywords
+- houses for sale California
+- homes for sale San Bernardino
+- real estate agent California
+- buy a house California
+- sell your house California
+- first time home buyer
+- mortgage options California
+- property for sale Inland Empire
+
+### Testing Tools
+- [Google Rich Results Test](https://search.google.com/test/rich-results)
+- [Google Search Console](https://search.google.com/search-console)
+- [PageSpeed Insights](https://pagespeed.web.dev/)
+
+---
+
+## Known Issues
+
+### Critical: Build Process on Server
+
+The server has limited RAM (469MB) which causes `npm run build` to fail with "Bus error (core dumped)".
+
+**Current workaround:** Build locally and upload via SCP (see deployment steps above).
+
+**Potential solutions documented in [SPEC.md](./SPEC.md#known-issues--challenges):**
+1. Static Export (`output: 'export'`) - **Recommended**
+2. Upgrade to larger droplet ($6/month with 1GB RAM)
+3. Use GitHub Actions for CI/CD builds
+4. Migrate to Vercel free tier
+
+---
+
+## Additional Documentation
+
+- **[SPEC.md](./SPEC.md)** - Complete technical specification and architecture
+- **[deployment-checklist.md](./deployment-checklist.md)** - Deployment procedures
+
+---
+
+**Last Updated:** 2026-02-12
 **Version:** 1.0.0 Production

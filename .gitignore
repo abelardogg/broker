@@ -40,3 +40,11 @@ PROJECT_CONTEXT.md
 deployment-checklist.md
 aicontext
 logs
+
+# SQLite Database
+/data/*.db
+/data/*.db-shm
+/data/*.db-wal
+
+# Security - Admin URL (keep private)
+.admin-url
