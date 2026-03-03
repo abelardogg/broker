@@ -1,8 +1,8 @@
 # The Arrowhead Group - Technical Specification
 
-**Version:** 1.0.0
-**Last Updated:** 2026-02-12
-**Project Status:** Production (with deployment challenges)
+**Version:** 2.0.0
+**Last Updated:** 2026-03-02
+**Project Status:** Production (Fully Deployed with CMS)
 
 ---
 
@@ -164,12 +164,14 @@ The Arrowhead Group is a full-service real estate and mortgage brokerage serving
 | `/calculators` | Client | Mortgage calculator tool | ✅ Live |
 | `/apply` | Static | Mortgage application form | ❌ Disabled |
 | `/api/contact` | API | Contact form submission handler | ✅ Live |
-| `/admin` | Server | Admin dashboard with statistics | ✅ Live |
-| `/admin/login` | Server | Admin authentication | ✅ Live |
-| `/admin/properties` | Server | Property CRUD management | ✅ Live |
-| `/admin/loan-programs` | Server | Loan program management | ✅ Live |
-| `/api/admin/*` | API | Admin CRUD endpoints | ✅ Live |
-| `/api/admin/upload/*` | API | R2 image upload/delete | ✅ Live |
+| `/mgmt-c141f580` | Server | **OBSCURED** Admin dashboard with statistics | ✅ Live |
+| `/mgmt-c141f580/login` | Server | **OBSCURED** Admin authentication | ✅ Live |
+| `/mgmt-c141f580/properties` | Server | **OBSCURED** Property CRUD management | ✅ Live |
+| `/mgmt-c141f580/properties/new` | Server | **OBSCURED** Add new property | ✅ Live |
+| `/mgmt-c141f580/properties/[id]/edit` | Server | **OBSCURED** Edit property | ✅ Live |
+| `/mgmt-c141f580/loan-programs` | Server | **OBSCURED** Loan program management | ✅ Live |
+| `/api/mgmt-c141f580/*` | API | **OBSCURED** Admin CRUD endpoints | ✅ Live |
+| `/api/mgmt-c141f580/upload/*` | API | **OBSCURED** R2 image upload/delete | ✅ Live |
 
 ### Key Components
 
@@ -281,6 +283,111 @@ The Arrowhead Group is a full-service real estate and mortgage brokerage serving
 
 ---
 
+## Security Implementation
+
+### Admin Panel Security
+
+**Obscured Access Path:**
+- Admin panel is NOT accessible at `/admin`
+- Uses obscured path: `/mgmt-c141f580`
+- Path stored in private `.admin-url` file (gitignored)
+- All admin routes use this obscured path consistently
+
+**Authentication & Authorization:**
+- Session-based authentication with HTTP-only cookies
+- HMAC-signed tokens (24-hour expiration)
+- bcrypt password hashing (10 rounds)
+- Middleware protection on all admin routes
+- Automatic redirect to login for unauthorized access
+
+**Rate Limiting:**
+- Login endpoint: 5 attempts per 15 minutes per IP
+- Returns HTTP 429 (Too Many Requests) when exceeded
+- Automatic cleanup of old rate limit entries
+- Protects against brute force attacks
+
+**Input Validation & Sanitization:**
+All API endpoints validate:
+- Required fields presence
+- Data types (string, number, array)
+- String lengths (max limits enforced)
+- Numeric ranges (min/max values)
+- Enum values (whitelist validation)
+- Array limits (max 20 images, 50 features)
+
+**Example Validations:**
+```typescript
+// Price: $0 - $100M
+price >= 0 && price <= 100000000
+
+// Beds/Baths: 0-20
+beds >= 0 && beds <= 20
+
+// Description: max 5000 characters
+description.substring(0, 5000)
+```
+
+**File Upload Security (Cloudflare R2):**
+- Requires authentication (admin session token)
+- File type whitelist: JPEG, PNG, WebP only
+- File size limit: 10MB maximum
+- Maximum 20 images per property
+- Unique filenames: `nanoid(16) + timestamp`
+- Presigned URLs: 1-hour expiration
+- CORS configured for authorized origins only
+
+**SEO & Search Engine Protection:**
+- robots.txt blocks all admin paths
+- Sitemap excludes admin routes
+- No public links to admin panel
+- Middleware blocks old `/admin` path
+
+**Database Security:**
+- Drizzle ORM with parameterized queries
+- No raw SQL execution
+- Type-safe queries via TypeScript
+- SQLite database file-based (./data/arrowhead.db)
+
+**Environment Variable Protection:**
+- Sensitive data in `.env.local` (gitignored)
+- Never committed to repository
+- Loaded only on server-side
+- Not exposed to client
+
+**Critical Variables:**
+```env
+SESSION_SECRET=<random-32-byte-hex>
+R2_SECRET_ACCESS_KEY=<cloudflare-secret>
+EMAIL_PASS=<gmail-app-password>
+ADMIN_PASSWORD=<bcrypt-hashed-on-use>
+```
+
+**Attack Vectors Mitigated:**
+
+| Attack Type | Mitigation |
+|-------------|------------|
+| Brute Force Login | Rate limiting (5/15min) |
+| SQL Injection | Drizzle ORM parameterized queries |
+| XSS (Cross-Site Scripting) | Input sanitization, length limits |
+| CSRF | HTTPOnly cookies, SameSite=Lax |
+| Path Traversal | No file system access, R2 object storage |
+| Unauthorized Access | Session tokens, middleware protection |
+| Search Engine Exposure | robots.txt, obscured paths |
+| File Upload Abuse | Type/size validation, authentication |
+| Session Hijacking | HTTPOnly cookies, secure in production |
+
+**Security Maintenance:**
+
+For detailed security documentation, see [SECURITY.md](./SECURITY.md)
+
+**Incident Response:**
+- Change SESSION_SECRET and restart PM2
+- Change ADMIN_PASSWORD and regenerate database
+- Review R2 bucket for unauthorized uploads
+- Check PM2 logs for suspicious activity
+
+---
+
 ## Known Issues & Challenges
 
 ### Critical Issues
@@ -290,20 +397,24 @@ The Arrowhead Group is a full-service real estate and mortgage brokerage serving
 - `npm run build` crashes with "Bus error (core dumped)"
 - Server has only 469MB RAM, insufficient for Next.js build
 
-**Current Workaround:**
+**Current Solution (✅ IMPLEMENTED):**
 ```bash
-# Build locally on Windows
+# 1. Build locally on Windows
 npm run build
 
-# Upload compiled .next to server
-scp -r .next dev@server:/var/www/arrowhead-realty/broker/
+# 2. Commit .next to git (temporarily uncommented in .gitignore)
+git add .
+git commit -m "Production build"
+git push
 
-# Update code and restart
+# 3. Update on server
 ssh dev@server
 cd /var/www/arrowhead-realty/broker
 git pull
 pm2 restart arrowhead-realty
 ```
+
+**Note:** `.next/` is temporarily uncommented in `.gitignore` to allow committing the build. This is necessary because the server cannot build due to RAM constraints.
 
 **Impact:**
 - Manual deployment required
@@ -353,13 +464,18 @@ pm2 restart arrowhead-realty
 - [ ] Test full static deployment workflow
 - [ ] Update deployment documentation
 
-### Phase 2: Content Management System (✅ COMPLETED)
+### Phase 2: Content Management System (✅ COMPLETED - 2026-03-02)
 - [x] SQLite database with Drizzle ORM
-- [x] Admin panel with authentication
+- [x] Admin panel with bcrypt authentication
 - [x] Property CRUD operations
 - [x] Loan program management
 - [x] Cloudflare R2 image storage integration
 - [x] User-friendly forms (comma-separated values)
+- [x] **Security hardening:** Obscured admin path (`/mgmt-c141f580`)
+- [x] **Rate limiting:** 5 login attempts per 15 minutes
+- [x] **Input sanitization:** All forms validated and sanitized
+- [x] **Session security:** HTTP-only cookies with HMAC signing
+- [x] **robots.txt:** Admin routes blocked from search engines
 - [ ] Integrate frontend properties page with database
 - [ ] Add blog functionality
 
@@ -410,7 +526,7 @@ npm run dev
 
 **Environment Variables (.env.local):**
 ```env
-# Email
+# Email Configuration
 EMAIL_USER=your-email@gmail.com
 EMAIL_PASS=your-gmail-app-password
 EMAIL_TO=recipient@example.com
@@ -418,21 +534,27 @@ EMAIL_TO=recipient@example.com
 # Database
 DATABASE_PATH=./data/arrowhead.db
 
-# Security
-SESSION_SECRET=change-this-to-a-random-secret-in-production
+# Security (CRITICAL - Change in production!)
+SESSION_SECRET=<generate-with-openssl-rand-hex-32>
 
-# Admin (used for initial seed)
-ADMIN_USERNAME=admin
-ADMIN_PASSWORD=admin123
+# Admin Credentials (used for database seed)
+ADMIN_USERNAME=your-custom-username
+ADMIN_PASSWORD=your-strong-password
 ADMIN_EMAIL=your-email@example.com
 
-# Cloudflare R2
+# Cloudflare R2 Storage
 R2_ACCOUNT_ID=your-cloudflare-account-id
 R2_ACCESS_KEY_ID=your-r2-access-key-id
 R2_SECRET_ACCESS_KEY=your-r2-secret-access-key
 R2_BUCKET_NAME=your-bucket-name
 R2_PUBLIC_URL=https://your-bucket-url.r2.dev
 ```
+
+**Security Notes:**
+- Generate SESSION_SECRET with: `openssl rand -hex 32`
+- Use a strong ADMIN_PASSWORD (12+ characters, mixed case, numbers, symbols)
+- Never commit `.env.local` to git
+- Admin URL is stored in `.admin-url` file (also gitignored)
 
 ### Code Standards
 
@@ -461,36 +583,48 @@ export function ComponentName() {
 
 ## Deployment Process
 
-### Current Deployment (Manual)
+### Current Deployment (✅ ACTIVE)
 
 **Prerequisites:**
 - SSH access to DigitalOcean droplet
 - Git repository access
-- Local development environment
+- Local development environment with 8GB+ RAM
 
-**Steps:**
+**Deployment Steps:**
 ```bash
 # 1. LOCAL: Make changes and commit
 git add .
 git commit -m "Description of changes"
-git push origin main
+git push
 
 # 2. LOCAL: Build project
 npm run build
+# Note: Build includes .next in git (/.next/ commented in .gitignore)
 
-# 3. LOCAL: Upload build to server
-scp -r .next dev@your-ip:/var/www/arrowhead-realty/broker/
+# 3. LOCAL: Commit build
+git add .next
+git commit -m "Production build"
+git push
 
-# 4. SERVER: Update code and restart
-ssh dev@your-ip
+# 4. SERVER: Update and restart
+ssh dev@thearrowhead
 cd /var/www/arrowhead-realty/broker
 git pull
 pm2 restart arrowhead-realty
+
+# 5. SERVER: Check logs
 pm2 logs arrowhead-realty --lines 50
 
-# 5. VERIFY: Check website
+# 6. VERIFY: Test website
 # Visit https://thearrowheadgroup.com
+# Visit https://thearrowheadgroup.com/mgmt-c141f580/login
 ```
+
+**Important Notes:**
+- `.next/` must be uncommented in `.gitignore` to commit builds
+- Server cannot build due to RAM constraints (469MB)
+- Database file (`data/arrowhead.db`) is gitignored
+- Admin credentials are in `.env.local` on server
 
 ### Proposed Deployment (Static Export)
 
@@ -567,6 +701,11 @@ broker/
 │   │   ├── PropertyModal.tsx
 │   │   ├── PropertyGallery.tsx
 │   │   └── Carousel.tsx
+│   ├── admin/
+│   │   ├── AdminNav.tsx          # Admin panel navigation
+│   │   ├── PropertyForm.tsx      # Property CRUD form
+│   │   ├── ImageUploader.tsx     # R2 image uploader
+│   │   └── DeletePropertyButton.tsx
 │   ├── analytics/
 │   │   └── PageView.tsx          # GTM page view tracking
 │   └── seo/
@@ -574,7 +713,14 @@ broker/
 │
 ├── lib/
 │   ├── config.ts                 # Site configuration, sample data
-│   └── utils.ts                  # Utility functions
+│   ├── utils.ts                  # Utility functions
+│   ├── db/
+│   │   ├── index.ts              # Drizzle ORM setup, schema
+│   │   ├── migrate.ts            # Database migration runner
+│   │   └── seed.ts               # Database seeding script
+│   ├── auth.ts                   # Session token management
+│   ├── admin-auth.ts             # Admin authentication middleware
+│   └── rate-limit.ts             # Rate limiting implementation
 │
 ├── types/
 │   └── index.ts                  # TypeScript type definitions
@@ -582,16 +728,21 @@ broker/
 ├── public/
 │   └── img/                      # Static images, logos
 │
-├── .env.local                    # Environment variables (not in git)
+├── data/
+│   └── arrowhead.db              # SQLite database (gitignored)
+│
+├── .env.local                    # Environment variables (gitignored)
+├── .admin-url                    # Admin URL reference (gitignored)
 ├── .gitignore
 ├── next.config.mjs               # Next.js configuration
 ├── tailwind.config.ts            # Tailwind CSS configuration
 ├── tsconfig.json                 # TypeScript configuration
+├── drizzle.config.ts             # Drizzle ORM configuration
 ├── package.json
 ├── README.md                     # User documentation
 ├── SPEC.md                       # This file - technical specification
-├── PROJECT_OVERVIEW.md           # Project overview for CMS team
-└── deployment-checklist.md       # Deployment procedures
+├── SECURITY.md                   # Security documentation
+└── PROJECT_OVERVIEW.md           # Project overview for CMS team
 ```
 
 ---
@@ -614,6 +765,7 @@ broker/
 | Version | Date | Changes | Author |
 |---------|------|---------|--------|
 | 1.0.0 | 2026-02-12 | Initial specification document | Claude Code |
+| 2.0.0 | 2026-03-02 | Added CMS, security implementation, deployment updates | Claude Code |
 
 ---
 
